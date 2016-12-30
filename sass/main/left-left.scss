@@ -1,0 +1,55 @@
+﻿@import "compass";
+@charset "UTF-8";
+@include global-reset;
+
+@import "../typography.scss";
+@import "../main.scss";
+
+#wordpress{
+    #main{
+        #article{
+            float:right;
+        }
+        aside{
+            &#alpha{
+                width:180px;
+                float:left;
+            }
+            &#beta{
+                width:180px;
+                float:left;
+            }
+        }
+    }
+}
+@media screen and (max-width: 640px) {
+    #wordpress{
+        width:100%;
+        #main{
+            width:100%;
+            aside{
+                display:none;
+            }
+        }
+    }
+}
+@media screen and (min-width: 640px) {
+    #wordpress{
+        width:640px;
+        #main{
+            #article{
+                width:(640px-200px-20px);
+            }
+        }
+    }
+}
+@media screen and (min-width: 1000px) {
+    #wordpress{
+        width:1000px;
+        #main{
+            #article{
+                width:580px;
+            }
+        }
+    }
+}

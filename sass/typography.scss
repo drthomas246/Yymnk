@@ -1,0 +1,32 @@
+/****************************************
+
+          Typography
+
+*****************************************/
+h1 {
+    /* 48px */
+    font-size: 48px/16px*100%;
+    line-height: 1;
+    font-weight:bold;
+}
+
+h2 {
+    /* 48px */
+    font-size: 36px/16px*100%;
+    line-height: 1.3333;
+    font-weight:bold;
+}
+
+h3 {
+    /* 24px */
+    font-size: 24px/16px*100%;
+    line-height: 1;
+    font-weight:bold;
+}
+
+h4, h5, h6 {
+    /* 24px */
+    font-size: 16px/16px*100%;
+    line-height: 1.5;
+    font-weight:bold;
+}

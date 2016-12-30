@@ -1,0 +1,41 @@
+﻿@import "compass";
+@charset "UTF-8";
+@include global-reset;
+
+@import "../typography.scss";
+@import "../main.scss";
+
+#wordpress{
+    #main{
+        #article{
+            width:auto;
+            section{
+                article{
+                    max-width:100%;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 640px) {
+    #wordpress{
+        width:100%;
+        #main{
+            width:100%;
+            aside{
+                display:none;
+            }
+        }
+    }
+}
+@media screen and (min-width: 640px) {
+    #wordpress{
+        width:640px;
+    }
+}
+@media screen and (min-width: 1000px) {
+    #wordpress{
+        width:1000px;
+
+    }
+}

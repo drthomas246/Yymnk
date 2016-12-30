@@ -1,0 +1,49 @@
+div#javascript_tab_sample ul#tab {
+  padding:30px;
+  border-bottom:1px solid #ccc;
+  margin-bottom:0;
+  }
+
+div#javascript_tab_sample ul#tab li {
+  margin:1px 0 0 1em;
+  text-align:center;
+  border:1px solid #ccc;
+  padding:5px 10px;
+  background-color:#e4e4e4;
+  float:left;
+  }
+
+div#javascript_tab_sample ul#tab li:hover {
+  background-color:#fff;
+}
+
+div#javascript_tab_sample ul#tab li a{
+  text-decoration:none;
+  color:#000;
+  box-shadow:none;
+}
+
+div#javascript_tab_sample ul#tab li.selected {
+  background-color:transparent;
+  border-bottom:1px solid #f1f1f1;
+  }
+
+div#javascript_tab_sample dd {
+  margin-left:0px;
+}
+
+div#javascript_tab_sample dl {
+  margin:0;
+  padding-top:1em;
+  clear:both;
+  }
+
+div#javascript_tab_sample dl dt {
+  margin-bottom:1em;
+  padding-bottom:1em;
+
+  }
+
+div#javascript_tab_sample dl dd p {
+  margin-bottom:1em;
+  }
