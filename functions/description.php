@@ -15,6 +15,8 @@ function custom_description_input() {
 function save_custom_description($post_id) {
     if (!wp_verify_nonce($_POST['custom_description_noncename'], 'custom-description')) return $post_id;
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return $post_id;
-    $custom_description = $_POST['custom_description'];
-    update_post_meta($post_id, '_custom_description', $custom_description);
+    if(!get_theme_mod('description','1')){
+      $custom_description = $_POST['custom_description'];
+      update_post_meta($post_id, '_custom_description', $custom_description);
+    }
 }

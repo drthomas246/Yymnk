@@ -4,7 +4,7 @@ function yymk_add_theme_page(){
   add_theme_page('テーマの設定', 'テーマの設定',8,'setting_by_theme','yymnk_setting');
 }
 function yymnk_setting(){
-  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top'])) {
+  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority'])) {
     set_theme_mod('twitter_cards', $_POST['twitter_cards']);
     set_theme_mod('copyright_auther', $_POST['copyright_auther']);
     set_theme_mod('copyright_end', $_POST['copyright_end']);
@@ -14,6 +14,24 @@ function yymnk_setting(){
     set_theme_mod('tracking_id', $_POST['tracking_id']);
     set_theme_mod('social_title', $_POST['social_title']);
     set_theme_mod('related_entry_title', $_POST['related_entry_title']);
+    $changefreq=$_POST['changefreq'];
+    set_theme_mod('changefreq_hp', $changefreq[hp]);
+    set_theme_mod('changefreq_post', $changefreq[post]);
+    set_theme_mod('changefreq_page', $changefreq[page]);
+    set_theme_mod('changefreq_archive', $changefreq[archive]);
+    set_theme_mod('changefreq_category', $changefreq[category]);
+    $priority=$_POST['priority'];
+    set_theme_mod('priority_hp',$priority[hp] );
+    set_theme_mod('priority_post',$priority[post] );
+    set_theme_mod('priority_page',$priority[page] );
+    set_theme_mod('priority_archive', $priority[archive]);
+    set_theme_mod('priority_category',$priority[category] );
+
+    if($_POST['sitemap']){
+      set_theme_mod('sitemap', $_POST['sitemap']);
+    }else{
+      set_theme_mod('sitemap', '0');
+    }
     if($_POST['to-top']){
       set_theme_mod('to-top', $_POST['to-top']);
     }else{
@@ -121,6 +139,7 @@ function yymnk_setting(){
       <li class="selected"><a href="#theme">サイト関係</a></li>
       <li><a href="#layout">レイアウト関係</a></li>
       <li><a href="#seo">SEO設定</a></li>
+      <li><a href="#sitemapo">sitemap設定</a></li>
       <li><a href="#version">バージョン情報</a></li>
     </ul>
     <form action="" method="post">
@@ -365,6 +384,169 @@ echo " disabled";
           </div>
         </dd>
       </dl>
+      <dl id="sitemap">
+        <dd>
+          <div class="metabox-holder">
+            <div class="postbox">
+              <h2 class="hndle">sitemap</h2>
+              <div class="inside">
+                <table class="form-table">
+                  <tbody>
+                  <tr>
+                    <th><label>sitemapの設置</label></th>
+                    <td>
+                      <label><input type="checkbox" class="sitemap" name="sitemap" value="1"<?php if(get_theme_mod('sitemap','0')){echo " checked=\"checked\"";} ?>>設置する</label>
+                    </td>
+                  </tr>
+                </tbody>
+                </table>
+                <p class="submit"><input type="submit" name="Submit" class="button-primary" value="変更を保存" /></p>
+              </div>
+            </div>
+          </div>
+          <div class="metabox-holder">
+            <div class="postbox">
+              <h2 class="hndle">sitemap設定</h2>
+              <div class="inside">
+                <table class="form-table">
+                  <tbody>
+                  <tr>
+                    <th><label>更新頻度の設定</label></th>
+                    <td>
+                      <select name="changefreq[hp]" class="changefreq"<?php if(!get_theme_mod('sitemap','0')){echo " disabled";} ?>>
+                        <option value="always"<?php if(get_theme_mod('changefreq_hp','daily')=="always"){echo " selected";} ?>>常時 </option>
+                        <option value="hourly"<?php if(get_theme_mod('changefreq_hp','daily')=="hourly"){echo " selected";} ?>>毎時</option>
+                        <option value="daily"<?php if(get_theme_mod('changefreq_hp','daily')=="daily"){echo " selected";} ?>>毎日</option>
+                        <option value="weekly"<?php if(get_theme_mod('changefreq_hp','daily')=="weekly"){echo " selected";} ?>>毎週</option>
+                        <option value="monthly"<?php if(get_theme_mod('changefreq_hp','daily')=="monthly"){echo " selected";} ?>>毎月</option>
+                        <option value="yearly"<?php if(get_theme_mod('changefreq_hp','daily')=="yearly"){echo " selected";} ?>>毎年</option>
+                        <option value="never"<?php if(get_theme_mod('changefreq_hp','daily')=="never"){echo " selected";} ?>>更新なし</option>
+                      </select>
+                      <label>ホームページ</label><br/>
+                      <select name="changefreq[post]" class="changefreq"<?php if(!get_theme_mod('sitemap','0')){echo " disabled";} ?>>
+                        <option value="always"<?php if(get_theme_mod('changefreq_post','monthly')=="always"){echo " selected";} ?>>常時 </option>
+                        <option value="hourly"<?php if(get_theme_mod('changefreq_post','monthly')=="hourly"){echo " selected";} ?>>毎時</option>
+                        <option value="daily"<?php if(get_theme_mod('changefreq_post','monthly')=="daily"){echo " selected";} ?>>毎日</option>
+                        <option value="weekly"<?php if(get_theme_mod('changefreq_post','monthly')=="weekly"){echo " selected";} ?>>毎週</option>
+                        <option value="monthly"<?php if(get_theme_mod('changefreq_post','monthly')=="monthly"){echo " selected";} ?>>毎月</option>
+                        <option value="yearly"<?php if(get_theme_mod('changefreq_post','monthly')=="yearly"){echo " selected";} ?>>毎年</option>
+                        <option value="never"<?php if(get_theme_mod('changefreq_post','monthly')=="never"){echo " selected";} ?>>更新なし</option>
+                      </select>
+                      <label>投稿</label><br/>
+                      <select name="changefreq[page]" class="changefreq"<?php if(!get_theme_mod('sitemap','0')){echo " disabled";} ?>>
+                        <option value="always"<?php if(get_theme_mod('changefreq_page','weekly')=="always"){echo " selected";} ?>>常時 </option>
+                        <option value="hourly"<?php if(get_theme_mod('changefreq_page','weekly')=="hourly"){echo " selected";} ?>>毎時</option>
+                        <option value="daily"<?php if(get_theme_mod('changefreq_page','weekly')=="daily"){echo " selected";} ?>>毎日</option>
+                        <option value="weekly"<?php if(get_theme_mod('changefreq_page','weekly')=="weekly"){echo " selected";} ?>>毎週</option>
+                        <option value="monthly"<?php if(get_theme_mod('changefreq_page','weekly')=="monthly"){echo " selected";} ?>>毎月</option>
+                        <option value="yearly"<?php if(get_theme_mod('changefreq_page','weekly')=="yearly"){echo " selected";} ?>>毎年</option>
+                        <option value="never"<?php if(get_theme_mod('changefreq_page','weekly')=="never"){echo " selected";} ?>>更新なし</option>
+                      </select>
+                      <label>固定ページ</label><br/>
+                      <select name="changefreq[archive]" class="changefreq"<?php if(!get_theme_mod('sitemap','0')){echo " disabled";} ?>>
+                        <option value="always"<?php if(get_theme_mod('changefreq_archive','weekly')=="always"){echo " selected";} ?>>常時 </option>
+                        <option value="hourly"<?php if(get_theme_mod('changefreq_archive','weekly')=="hourly"){echo " selected";} ?>>毎時</option>
+                        <option value="daily"<?php if(get_theme_mod('changefreq_archive','weekly')=="daily"){echo " selected";} ?>>毎日</option>
+                        <option value="weekly"<?php if(get_theme_mod('changefreq_archive','weekly')=="weekly"){echo " selected";} ?>>毎週</option>
+                        <option value="monthly"<?php if(get_theme_mod('changefreq_archive','weekly')=="monthly"){echo " selected";} ?>>毎月</option>
+                        <option value="yearly"<?php if(get_theme_mod('changefreq_archive','weekly')=="yearly"){echo " selected";} ?>>毎年</option>
+                        <option value="never"<?php if(get_theme_mod('changefreq_archive','weekly')=="never"){echo " selected";} ?>>更新なし</option>
+                      </select>
+                      <label>月別アーカイブページ</label><br/>
+                      <select name="changefreq[category]" class="changefreq"<?php if(!get_theme_mod('sitemap','0')){echo " disabled";} ?>>
+                        <option value="always"<?php if(get_theme_mod('changefreq_category','weekly')=="always"){echo " selected";} ?>>常時 </option>
+                        <option value="hourly"<?php if(get_theme_mod('changefreq_category','weekly')=="hourly"){echo " selected";} ?>>毎時</option>
+                        <option value="daily"<?php if(get_theme_mod('changefreq_category','weekly')=="daily"){echo " selected";} ?>>毎日</option>
+                        <option value="weekly"<?php if(get_theme_mod('changefreq_category','weekly')=="weekly"){echo " selected";} ?>>毎週</option>
+                        <option value="monthly"<?php if(get_theme_mod('changefreq_category','weekly')=="monthly"){echo " selected";} ?>>毎月</option>
+                        <option value="yearly"<?php if(get_theme_mod('changefreq_category','weekly')=="yearly"){echo " selected";} ?>>毎年</option>
+                        <option value="never"<?php if(get_theme_mod('changefreq_category','weekly')=="never"){echo " selected";} ?>>更新なし</option>
+                      </select>
+                      <label>カテゴリーページ</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th><label>優先順位の設定</label></th>
+                    <td>
+                      <select name="priority[hp]" class="priority"<?php if(!get_theme_mod('sitemap','0')){echo " disabled";} ?>>
+                        <option value="0.0"<?php if(get_theme_mod('priority_hp','1.0')=="0.0"){echo " selected";} ?>>0.0 </option>
+                        <option value="0.1"<?php if(get_theme_mod('priority_hp','1.0')=="0.1"){echo " selected";} ?>>0.1</option>
+                        <option value="0.2"<?php if(get_theme_mod('priority_hp','1.0')=="0.2"){echo " selected";} ?>>0.2</option>
+                        <option value="0.3"<?php if(get_theme_mod('priority_hp','1.0')=="0.3"){echo " selected";} ?>>0.3</option>
+                        <option value="0.4"<?php if(get_theme_mod('priority_hp','1.0')=="0.4"){echo " selected";} ?>>0.4</option>
+                        <option value="0.5"<?php if(get_theme_mod('priority_hp','1.0')=="0.5"){echo " selected";} ?>>0.5</option>
+                        <option value="0.6"<?php if(get_theme_mod('priority_hp','1.0')=="0.6"){echo " selected";} ?>>0.6</option>
+                        <option value="0.7"<?php if(get_theme_mod('priority_hp','1.0')=="0.7"){echo " selected";} ?>>0.7</option>
+                        <option value="0.8"<?php if(get_theme_mod('priority_hp','1.0')=="0.8"){echo " selected";} ?>>0.8</option>
+                        <option value="0.9"<?php if(get_theme_mod('priority_hp','1.0')=="0.9"){echo " selected";} ?>>0.9</option>
+                        <option value="1.0"<?php if(get_theme_mod('priority_hp','1.0')=="1.0"){echo " selected";} ?>>1.0</option>
+                      </select>
+                      <label>ホームページ</label><br/>
+                      <select name="priority[post]" class="priority"<?php if(!get_theme_mod('sitemap','0')){echo " disabled";} ?>>
+                        <option value="0.0"<?php if(get_theme_mod('priority_post','0.6')=="0.0"){echo " selected";} ?>>0.0 </option>
+                        <option value="0.1"<?php if(get_theme_mod('priority_post','0.6')=="0.1"){echo " selected";} ?>>0.1</option>
+                        <option value="0.2"<?php if(get_theme_mod('priority_post','0.6')=="0.2"){echo " selected";} ?>>0.2</option>
+                        <option value="0.3"<?php if(get_theme_mod('priority_post','0.6')=="0.3"){echo " selected";} ?>>0.3</option>
+                        <option value="0.4"<?php if(get_theme_mod('priority_post','0.6')=="0.4"){echo " selected";} ?>>0.4</option>
+                        <option value="0.5"<?php if(get_theme_mod('priority_post','0.6')=="0.5"){echo " selected";} ?>>0.5</option>
+                        <option value="0.6"<?php if(get_theme_mod('priority_post','0.6')=="0.6"){echo " selected";} ?>>0.6</option>
+                        <option value="0.7"<?php if(get_theme_mod('priority_post','0.6')=="0.7"){echo " selected";} ?>>0.7</option>
+                        <option value="0.8"<?php if(get_theme_mod('priority_postp','0.6')=="0.8"){echo " selected";} ?>>0.8</option>
+                        <option value="0.9"<?php if(get_theme_mod('priority_post','0.6')=="0.9"){echo " selected";} ?>>0.9</option>
+                        <option value="1.0"<?php if(get_theme_mod('priority_post','0.6')=="1.0"){echo " selected";} ?>>1.0</option>
+                      </select>
+                      <label>投稿</label><br/>
+                      <select name="priority[page]" class="priority"<?php if(!get_theme_mod('sitemap','0')){echo " disabled";} ?>>
+                        <option value="0.0"<?php if(get_theme_mod('priority_page','0.6')=="0.0"){echo " selected";} ?>>0.0 </option>
+                        <option value="0.1"<?php if(get_theme_mod('priority_page','0.6')=="0.1"){echo " selected";} ?>>0.1</option>
+                        <option value="0.2"<?php if(get_theme_mod('priority_page','0.6')=="0.2"){echo " selected";} ?>>0.2</option>
+                        <option value="0.3"<?php if(get_theme_mod('priority_page','0.6')=="0.3"){echo " selected";} ?>>0.3</option>
+                        <option value="0.4"<?php if(get_theme_mod('priority_page','0.6')=="0.4"){echo " selected";} ?>>0.4</option>
+                        <option value="0.5"<?php if(get_theme_mod('priority_page','0.6')=="0.5"){echo " selected";} ?>>0.5</option>
+                        <option value="0.6"<?php if(get_theme_mod('priority_page','0.6')=="0.6"){echo " selected";} ?>>0.6</option>
+                        <option value="0.7"<?php if(get_theme_mod('priority_page','0.6')=="0.7"){echo " selected";} ?>>0.7</option>
+                        <option value="0.8"<?php if(get_theme_mod('priority_page','0.6')=="0.8"){echo " selected";} ?>>0.8</option>
+                        <option value="0.9"<?php if(get_theme_mod('priority_page','0.6')=="0.9"){echo " selected";} ?>>0.9</option>
+                        <option value="1.0"<?php if(get_theme_mod('priority_page','0.6')=="1.0"){echo " selected";} ?>>1.0</option>
+                      </select>
+                      <label>固定ページ</label><br/>
+                      <select name="priority[archive]" class="priority"<?php if(!get_theme_mod('sitemap','0')){echo " disabled";} ?>>
+                        <option value="0.0"<?php if(get_theme_mod('priority_archive','0.3')=="0.0"){echo " selected";} ?>>0.0 </option>
+                        <option value="0.1"<?php if(get_theme_mod('priority_archive','0.3')=="0.1"){echo " selected";} ?>>0.1</option>
+                        <option value="0.2"<?php if(get_theme_mod('priority_archive','0.3')=="0.2"){echo " selected";} ?>>0.2</option>
+                        <option value="0.3"<?php if(get_theme_mod('priority_archive','0.3')=="0.3"){echo " selected";} ?>>0.3</option>
+                        <option value="0.4"<?php if(get_theme_mod('priority_archive','0.3')=="0.4"){echo " selected";} ?>>0.4</option>
+                        <option value="0.5"<?php if(get_theme_mod('priority_archive','0.3')=="0.5"){echo " selected";} ?>>0.5</option>
+                        <option value="0.6"<?php if(get_theme_mod('priority_archive','0.3')=="0.6"){echo " selected";} ?>>0.6</option>
+                        <option value="0.7"<?php if(get_theme_mod('priority_archive','0.3')=="0.7"){echo " selected";} ?>>0.7</option>
+                        <option value="0.8"<?php if(get_theme_mod('priority_archive','0.3')=="0.8"){echo " selected";} ?>>0.8</option>
+                        <option value="0.9"<?php if(get_theme_mod('priority_archive','0.3')=="0.9"){echo " selected";} ?>>0.9</option>
+                        <option value="1.0"<?php if(get_theme_mod('priority_archive','0.3')=="1.0"){echo " selected";} ?>>1.0</option>
+                      </select>
+                      <label>月別アーカイブページ</label><br/>
+                      <select name="priority[category]" class="priority"<?php if(!get_theme_mod('sitemap','0')){echo " disabled";} ?>>
+                        <option value="0.0"<?php if(get_theme_mod('priority_category','0.3')=="0.0"){echo " selected";} ?>>0.0 </option>
+                        <option value="0.1"<?php if(get_theme_mod('priority_category','0.3')=="0.1"){echo " selected";} ?>>0.1</option>
+                        <option value="0.2"<?php if(get_theme_mod('priority_category','0.3')=="0.2"){echo " selected";} ?>>0.2</option>
+                        <option value="0.3"<?php if(get_theme_mod('priority_category','0.3')=="0.3"){echo " selected";} ?>>0.3</option>
+                        <option value="0.4"<?php if(get_theme_mod('priority_category','0.3')=="0.4"){echo " selected";} ?>>0.4</option>
+                        <option value="0.5"<?php if(get_theme_mod('priority_category','0.3')=="0.5"){echo " selected";} ?>>0.5</option>
+                        <option value="0.6"<?php if(get_theme_mod('priority_category','0.3')=="0.6"){echo " selected";} ?>>0.6</option>
+                        <option value="0.7"<?php if(get_theme_mod('priority_category','0.3')=="0.7"){echo " selected";} ?>>0.7</option>
+                        <option value="0.8"<?php if(get_theme_mod('priority_category','0.3')=="0.8"){echo " selected";} ?>>0.8</option>
+                        <option value="0.9"<?php if(get_theme_mod('priority_category','0.3')=="0.9"){echo " selected";} ?>>0.9</option>
+                        <option value="1.0"<?php if(get_theme_mod('priority_category','0.3')=="1.0"){echo " selected";} ?>>1.0</option>
+                      </select>
+                      <label>カテゴリーページ</label>
+                    </td>
+                </tbody>
+                </table>
+                <p class="submit"><input type="submit" name="Submit" class="button-primary" value="変更を保存" /></p>
+              </div>
+            </div>
+          </div>
+        </dd>
+      </dl>
     </form>
       <dl id="version">
         <dd>
@@ -395,7 +577,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.0
+                      1.2
                     </td>
                   </tr>
                   <tr>
