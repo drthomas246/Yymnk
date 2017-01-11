@@ -1,4 +1,9 @@
 <?php
+function yymnk_robot(){
+  $txt="User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\nSitemap: ".home_url()."/sitemap-index.xml";
+  file_put_contents(get_home_path()."/robot.txt", $txt);
+  return;
+}
 function yymnk_sitemap($post_ID){
   if(get_theme_mod('sitemap','0')){
     // ライブラリの読み込み
@@ -57,7 +62,10 @@ function yymnk_sitemap($post_ID){
     foreach($cat_all as $value){
       $stmp->addItem( str_replace(home_url(),"",get_category_link($value)) , get_theme_mod('priority_category','0.3') , get_theme_mod('changefreq_category','weekly') , get_the_date('Y-m-d') ) ;
     }
+    $stmp->createSitemapIndex( home_url()  , "Today" ) ;
+    yymnk_robot();
   }
   return $post_ID;
 }
 add_action( 'publish_post', 'yymnk_sitemap');
+add_action( 'publish_page', 'yymnk_sitemap');

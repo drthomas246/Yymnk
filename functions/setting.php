@@ -1,4 +1,14 @@
 <?php
+function yymnk_del(){
+  if(file_exists(get_home_path()."/robot.txt")){
+    unlink(get_home_path()."/robot.txt");
+  }
+  $fileName = get_home_path()."/sitemap*.xml";
+  foreach (glob($fileName) as $val) {
+    unlink($val);
+  }
+  return;
+}
 add_action('admin_menu', 'yymk_add_theme_page');
 function yymk_add_theme_page(){
   add_theme_page('テーマの設定', 'テーマの設定',8,'setting_by_theme','yymnk_setting');
@@ -29,8 +39,10 @@ function yymnk_setting(){
 
     if($_POST['sitemap']){
       set_theme_mod('sitemap', $_POST['sitemap']);
+      yymnk_sitemap($post_ID);
     }else{
       set_theme_mod('sitemap', '0');
+      yymnk_del();
     }
     if($_POST['to-top']){
       set_theme_mod('to-top', $_POST['to-top']);
