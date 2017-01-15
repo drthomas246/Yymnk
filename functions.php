@@ -130,3 +130,4 @@ require_once get_template_directory() . '/functions/description.php';
 require_once get_template_directory() . '/functions/customize.php';
 require_once get_template_directory() . '/functions/copyright.php';
 require_once get_template_directory() . '/functions/sitemapedit.php';
+require_once get_template_directory() . '/functions/cache.php';

@@ -14,7 +14,8 @@ function yymk_add_theme_page(){
   add_theme_page('テーマの設定', 'テーマの設定',8,'setting_by_theme','yymnk_setting');
 }
 function yymnk_setting(){
-  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority'])) {
+  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache'])) {
+    yymnk_cache_clear();
     set_theme_mod('twitter_cards', $_POST['twitter_cards']);
     set_theme_mod('copyright_auther', $_POST['copyright_auther']);
     set_theme_mod('copyright_end', $_POST['copyright_end']);
@@ -36,7 +37,27 @@ function yymnk_setting(){
     set_theme_mod('priority_page',$priority[page] );
     set_theme_mod('priority_archive', $priority[archive]);
     set_theme_mod('priority_category',$priority[category] );
-
+    set_theme_mod('cache_time', $_POST['cache_time']);
+    if($_POST['cache_sidbar_a']){
+      set_theme_mod('cache_sidbar_a', $_POST['cache_sidbar_a']);
+    }else{
+      set_theme_mod('cache_sidbar_a', '0');
+    }
+    if($_POST['cache_sidbar_b']){
+      set_theme_mod('cache_sidbar_b', $_POST['cache_sidbar_b']);
+    }else{
+      set_theme_mod('cache_sidbar_b', '0');
+    }
+    if($_POST['analytics']){
+      set_theme_mod('analytics', $_POST['analytics']);
+    }else{
+      set_theme_mod('analytics', '0');
+    }
+    if($_POST['cache']){
+      set_theme_mod('cache', $_POST['cache']);
+    }else{
+      set_theme_mod('cache', '0');
+    }
     if($_POST['sitemap']){
       set_theme_mod('sitemap', $_POST['sitemap']);
       yymnk_sitemap($post_ID);
@@ -152,6 +173,7 @@ function yymnk_setting(){
       <li><a href="#layout">レイアウト関係</a></li>
       <li><a href="#seo">SEO設定</a></li>
       <li><a href="#sitemapo">sitemap設定</a></li>
+      <li><a href="#cache">キャッシュ</a></li>
       <li><a href="#version">バージョン情報</a></li>
     </ul>
     <form action="" method="post">
@@ -220,6 +242,7 @@ function yymnk_setting(){
         </dd>
       </dl>
       <dl id="layout">
+        <dd>
           <div class="metabox-holder">
             <div class="postbox">
               <h2 class="hndle">サイドバー</h2>
@@ -287,7 +310,6 @@ function yymnk_setting(){
               </div>
             </div>
           </div>
-        <dd>
         </dd>
       </dl>
       <dl id="seo">
@@ -559,6 +581,49 @@ echo " disabled";
           </div>
         </dd>
       </dl>
+      <dl id="cache">
+        <dd>
+          <div class="metabox-holder">
+            <div class="postbox">
+              <h2 class="hndle">キャッシュ</h2>
+              <div class="inside">
+                <table class="form-table">
+                  <tbody>
+                  <tr>
+                    <th><label>サイトをキャッシュ</label></th>
+                    <td>
+                    <label><input type="checkbox" class="cache" name="cache" value="1"<?php if(get_theme_mod('cache','0')){echo " checked=\"checked\"";} ?>>設定する</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th><label>キャッシュ時間</label></th>
+                    <td>
+                      <select name="cache_time" class="cache_time"<?php if(!get_theme_mod('cache','0')){echo " disabled";} ?>>
+                        <option value="day"<?php if(get_theme_mod('cache_time','week')=="day"){echo " selected";} ?>>１日 </option>
+                        <option value="week"<?php if(get_theme_mod('cache_time','week')=="week"){echo " selected";} ?>>１週間</option>
+                        <option value="month"<?php if(get_theme_mod('cache_time','week')=="month"){echo " selected";} ?>>1ヶ月</option>
+                        <option value="year"<?php if(get_theme_mod('cache_time','week')=="year"){echo " selected";} ?>>１年</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                  <th><label>サイドバーα</label></th>
+                    <td>
+                    <label><input type="checkbox" class="cache_sidbar_a" name="cache_sidbar_a" value="1"<?php if(get_theme_mod('cache_sidbar_a','0')){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('cache','0')){echo " disabled";} ?>>キャッシュする</label>
+                  </tr>
+                  <tr>
+                  <th><label>サイドバーβ</label></th>
+                    <td>
+                    <label><input type="checkbox" class="cache_sidbar_b" name="cache_sidbar_b" value="1"<?php if(get_theme_mod('cache_sidbar_b','0')){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('cache','0')){echo " disabled";} ?>>キャッシュする</label>
+                  </tr>
+                </tbody>
+                </table>
+                <p class="submit"><input type="submit" name="Submit" class="button-primary" value="変更を保存" /></p>
+              </div>
+            </div>
+          </div>
+        </dd>
+      </dl>
     </form>
       <dl id="version">
         <dd>
@@ -589,7 +654,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.2
+                      1.3
                     </td>
                   </tr>
                   <tr>

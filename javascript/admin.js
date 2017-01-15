@@ -60,4 +60,15 @@
       $('.priority').prop('disabled',true);
     }
   });
+  $('.cache').change(function(){
+    if($(this).prop( 'checked' )){
+      $('.cache_time').prop('disabled',false);
+      $('.cache_sidbar_a').prop('disabled',false);
+      $('.cache_sidbar_b').prop('disabled',false);
+    }else{
+      $('.cache_time').prop('disabled',true);
+      $('.cache_sidbar_a').prop('disabled',true);
+      $('.cache_sidbar_b').prop('disabled',true);
+    }
+  });
 } )( jQuery );

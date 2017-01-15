@@ -16,6 +16,7 @@ tab.setup = {
       document.getElementById('layout'),
       document.getElementById('seo'),
       document.getElementById('sitemap'),
+      document.getElementById('cache'),
       document.getElementById('version')
    ]
 }

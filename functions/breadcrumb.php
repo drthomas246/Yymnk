@@ -74,6 +74,6 @@ function breadcrumb($divOption = array("id" => "breadcrumb", "class" => "clearfi
   $str.='</ul>';
   $str.='</div>';
 }
-echo $str;
+return $str;
 }
 ?>
