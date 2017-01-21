@@ -731,7 +731,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.42
+                      1.43
                     </td>
                   </tr>
                   <tr>
