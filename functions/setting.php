@@ -677,8 +677,10 @@ echo " disabled";
                   <tr>
                     <th><label>アドセンスの広告コード</label></th>
                     <td>
+<?php     $adsense_tag = preg_replace('/\\\"/', '"', get_theme_mod('adsense_tag',''));
+    $adsense_tag = preg_replace("/\\\'/", "'", $adsense_tag);?>
                     <label><textarea class="adsense_tag" name="adsense_tag" cols="40" rows="4" placeholder="アドセンスの広告コードを挿入してください
-できるだけレスポンシブルのものがいいです"<?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>><?php echo get_theme_mod('adsense_tag',''); ?></textarea></label>
+できるだけレスポンシブルのものがいいです"<?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>><?php echo $adsense_tag; ?></textarea></label>
                     </td>
                   </tr>
                   <tr>
@@ -729,7 +731,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.4
+                      1.41
                     </td>
                   </tr>
                   <tr>
