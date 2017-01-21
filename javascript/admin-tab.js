@@ -17,6 +17,7 @@ tab.setup = {
       document.getElementById('seo'),
       document.getElementById('sitemap'),
       document.getElementById('cache'),
+      document.getElementById('adsense'),
       document.getElementById('version')
    ]
 }

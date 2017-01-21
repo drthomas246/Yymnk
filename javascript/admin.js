@@ -71,4 +71,21 @@
       $('.cache_sidbar_b').prop('disabled',true);
     }
   });
+  $('.adsense').change(function(){
+    if($(this).prop( 'checked' )){
+      $('.adsense_tag').prop('disabled',false);
+      $('.adsense_buttom').prop('disabled',false);
+      $('.adsense_nbsp').prop('disabled',false);
+      $('.adsense_more').prop('disabled',false);
+      $('.adsense_shortcode').prop('disabled',false);
+      $('.adsense_label').prop('disabled',false);
+    }else{
+      $('.adsense_tag').prop('disabled',true);
+      $('.adsense_buttom').prop('disabled',true);
+      $('.adsense_nbsp').prop('disabled',true);
+      $('.adsense_more').prop('disabled',true);
+      $('.adsense_shortcode').prop('disabled',true);
+      $('.adsense_label').prop('disabled',true);
+    }
+  });
 } )( jQuery );

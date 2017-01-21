@@ -14,9 +14,11 @@ function yymk_add_theme_page(){
   add_theme_page('テーマの設定', 'テーマの設定',8,'setting_by_theme','yymnk_setting');
 }
 function yymnk_setting(){
-  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache'])) {
+  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label'])) {
     yymnk_cache_clear();
     set_theme_mod('twitter_cards', $_POST['twitter_cards']);
+    set_theme_mod('adsense_label', $_POST['adsense_label']);
+    set_theme_mod('adsense_tag', $_POST['adsense_tag']);
     set_theme_mod('copyright_auther', $_POST['copyright_auther']);
     set_theme_mod('copyright_end', $_POST['copyright_end']);
     set_theme_mod('copyright_start', $_POST['copyright_start']);
@@ -38,6 +40,31 @@ function yymnk_setting(){
     set_theme_mod('priority_archive', $priority[archive]);
     set_theme_mod('priority_category',$priority[category] );
     set_theme_mod('cache_time', $_POST['cache_time']);
+    if($_POST['adsense']){
+      set_theme_mod('adsense', $_POST['adsense']);
+    }else{
+      set_theme_mod('adsense', '0');
+    }
+    if($_POST['adsense_more']){
+      set_theme_mod('adsense_more', $_POST['adsense_more']);
+    }else{
+      set_theme_mod('adsense_more', '0');
+    }
+    if($_POST['adsense_shortcode']){
+      set_theme_mod('adsense_shortcode', $_POST['adsense_shortcode']);
+    }else{
+      set_theme_mod('adsense_shortcode', '0');
+    }
+    if($_POST['adsense_buttom']){
+      set_theme_mod('adsense_buttom', $_POST['adsense_buttom']);
+    }else{
+      set_theme_mod('adsense_buttom', '0');
+    }
+    if($_POST['adsense_nbsp']){
+      set_theme_mod('adsense_nbsp', $_POST['adsense_nbsp']);
+    }else{
+      set_theme_mod('adsense_nbsp', '0');
+    }
     if($_POST['cache_sidbar_a']){
       set_theme_mod('cache_sidbar_a', $_POST['cache_sidbar_a']);
     }else{
@@ -174,6 +201,7 @@ function yymnk_setting(){
       <li><a href="#seo">SEO設定</a></li>
       <li><a href="#sitemapo">sitemap設定</a></li>
       <li><a href="#cache">キャッシュ</a></li>
+      <li><a href="#adsense">アドセンス</a></li>
       <li><a href="#version">バージョン情報</a></li>
     </ul>
     <form action="" method="post">
@@ -624,6 +652,53 @@ echo " disabled";
           </div>
         </dd>
       </dl>
+      <dl id="adsense">
+        <dd>
+          <div class="metabox-holder">
+            <div class="postbox">
+              <h2 class="hndle">アドセンス</h2>
+              <div class="inside">
+                <table class="form-table">
+                  <tbody>
+                  <tr>
+                    <th><label>アドセンスを設定</label></th>
+                    <td>
+                    <label><input type="checkbox" class="adsense" name="adsense" value="1"<?php if(get_theme_mod('adsense','0')){echo " checked=\"checked\"";} ?>>設定する</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th><label>ラベルの設定</label></th>
+                    <td>
+                    <label><input type="radio" name="adsense_label" class="adsense_label" value="none"<?php if(get_theme_mod('adsense_label','none')=="none"){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>>なし</label><br/>
+                    <label><input type="radio" name="adsense_label" class="adsense_label" value="sponsor"<?php if(get_theme_mod('adsense_label','none')=="sponsor"){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>>「スポンサーリンク」と表示</label><br/>
+                    <label><input type="radio" name="adsense_label" class="adsense_label" value="ad"<?php if(get_theme_mod('adsense_label','none')=="ad"){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>>「広告」と表示</label><br/>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th><label>アドセンスの広告コード</label></th>
+                    <td>
+                    <label><textarea class="adsense_tag" name="adsense_tag" cols="40" rows="4" placeholder="アドセンスの広告コードを挿入してください
+できるだけレスポンシブルのものがいいです"<?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>><?php echo get_theme_mod('adsense_tag',''); ?></textarea></label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th><label>挿入場所</label></th>
+                    <td>
+                    <label><input type="checkbox" class="adsense_buttom" name="adsense_buttom" value="1"<?php if(get_theme_mod('adsense_buttom','0')){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>>本文の一番下</label><br/>
+                    <label><input type="checkbox" class="adsense_more" name="adsense_more" value="1"<?php if(get_theme_mod('adsense_more','0')){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>>moreタグの部分</label><br/>
+                    <label><input type="checkbox" class="adsense_nbsp" name="adsense_nbsp" value="1"<?php if(get_theme_mod('adsense_nbsp','0')){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>>&lt;p&gt;&amp;nbsp;&lt;/p&gt;の部分(ビジュアルエディタでの改行)</label><br/>
+                    <label><input type="checkbox" class="adsense_shortcode" name="adsense_shortcode" value="1"<?php if(get_theme_mod('adsense_shortcode','0')){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>>ショートコード[adsense]を使う</label>
+                    </td>
+                  </tr>
+                  </tr>
+                  </tbody>
+                </table>
+                <p class="submit"><input type="submit" name="Submit" class="button-primary" value="変更を保存" /></p>
+              </div>
+            </div>
+          </div>
+        </dd>
+      </dl>
     </form>
       <dl id="version">
         <dd>
@@ -654,7 +729,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.3
+                      1.4
                     </td>
                   </tr>
                   <tr>
