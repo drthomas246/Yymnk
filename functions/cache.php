@@ -1,8 +1,8 @@
 <?php
-function yymnk_cache_clear($post_ID){
+function yymnk_cache_clear($post_ID=null){
   $urls = array();
   $urls=get_transient("urls");
-  foreach( $urls as $url ) {
+  foreach( (array)$urls as $url ) {
     delete_transient($url);
   }
   delete_transient("urls");
