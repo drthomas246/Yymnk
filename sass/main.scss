@@ -53,6 +53,11 @@
             .required{
                 color:red;
             }
+            #commentform{
+                textarea{
+                    width:90%;
+                }
+            }
             .comment-form{
                 p{
                    display:flex;

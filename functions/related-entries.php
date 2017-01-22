@@ -1,5 +1,5 @@
 <?php
-function related_entry(){
+function related_entry($post){
   $categories = get_the_category($post->ID);
   $category_ID = array();
   foreach($categories as $category):

@@ -27,10 +27,10 @@ function get_social_buttom() {
 	$contents = ob_get_clean();
 	return $contents;
 }
-function get_related_entry() {
+function get_related_entry($post) {
 	$contents = "";
 	ob_start();
-	related_entry();
+	related_entry($post);
 	$contents = ob_get_clean();
 	return $contents;
 }

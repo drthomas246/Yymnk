@@ -95,7 +95,7 @@ if(get_theme_mod('sidebar','none')=="right-right"){
         );
         $body.='      '.wp_link_pages($args);
         $body.=get_social_buttom();
-        $body.=get_related_entry();
+        $body.=get_related_entry($post);
         $body.=get_comments_template();
         $body.='            </article>
             </section>';

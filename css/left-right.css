@@ -142,6 +142,9 @@ h4, h5, h6 {
 #wordpress #main #article .required {
   color: red;
 }
+#wordpress #main #article #commentform textarea {
+  width: 90%;
+}
 #wordpress #main #article .comment-form p {
   display: flex;
   align-items: flex-start;
