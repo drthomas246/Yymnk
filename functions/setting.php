@@ -14,7 +14,7 @@ function yymk_add_theme_page(){
   add_theme_page('テーマの設定', 'テーマの設定',8,'setting_by_theme','yymnk_setting');
 }
 function yymnk_setting(){
-  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label'])) {
+  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label']) or isset($_POST['pubsubhubbub'])) {
     yymnk_cache_clear();
     set_theme_mod('twitter_cards', $_POST['twitter_cards']);
     set_theme_mod('adsense_label', $_POST['adsense_label']);
@@ -40,6 +40,11 @@ function yymnk_setting(){
     set_theme_mod('priority_archive', $priority[archive]);
     set_theme_mod('priority_category',$priority[category] );
     set_theme_mod('cache_time', $_POST['cache_time']);
+    if($_POST['pubsubhubbub']){
+      set_theme_mod('pubsubhubbub', $_POST['pubsubhubbub']);
+    }else{
+      set_theme_mod('pubsubhubbub', '0');
+    }
     if($_POST['adsense']){
       set_theme_mod('adsense', $_POST['adsense']);
     }else{
@@ -199,7 +204,7 @@ function yymnk_setting(){
       <li class="selected"><a href="#theme">サイト関係</a></li>
       <li><a href="#layout">レイアウト関係</a></li>
       <li><a href="#seo">SEO設定</a></li>
-      <li><a href="#sitemapo">sitemap設定</a></li>
+      <li><a href="#crawler">クローラー対策</a></li>
       <li><a href="#cache">キャッシュ</a></li>
       <li><a href="#adsense">アドセンス</a></li>
       <li><a href="#version">バージョン情報</a></li>
@@ -446,11 +451,11 @@ echo " disabled";
           </div>
         </dd>
       </dl>
-      <dl id="sitemap">
+      <dl id="crawler">
         <dd>
           <div class="metabox-holder">
             <div class="postbox">
-              <h2 class="hndle">sitemap</h2>
+              <h2 class="hndle">クローラー対策</h2>
               <div class="inside">
                 <table class="form-table">
                   <tbody>
@@ -458,6 +463,12 @@ echo " disabled";
                     <th><label>sitemapの設置</label></th>
                     <td>
                       <label><input type="checkbox" class="sitemap" name="sitemap" value="1"<?php if(get_theme_mod('sitemap','0')){echo " checked=\"checked\"";} ?>>設置する</label>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th><label>PubSubHubbubの実行</label></th>
+                    <td>
+                      <label><input type="checkbox" class="PubSubHubbub" name="pubsubhubbub" value="1"<?php if(get_theme_mod('pubsubhubbub','0')){echo " checked=\"checked\"";} ?>>実行する</label>
                     </td>
                   </tr>
                 </tbody>
@@ -731,19 +742,26 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.4.4
+                      1.5
                     </td>
                   </tr>
                   <tr>
                     <th><label for="sidebar">ライセンス</label></th>
                     <td>
-                      GNU General Public License
+                      GNU General Public License Ver 3
                     </td>
                   </tr>
                   <tr>
                     <th><label for="sidebar">ライセンスURI</label></th>
                     <td>
-                      <a href="http://www.gnu.org/licenses/gpl-2.0.html">http://www.gnu.org/licenses/gpl-2.0.html</a>
+                      <a href="https://www.gnu.org/licenses/gpl.html">https://www.gnu.org/licenses/gpl.html</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th><label for="sidebar">Following third-party resources</label></th>
+                    <td>
+                      This software includes the work that is distributed in the Apache License 2.0.<br/>
+                      php-publisher : Josh Fraser
                     </td>
                   </tr>
                 </table>

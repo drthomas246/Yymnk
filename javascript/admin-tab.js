@@ -15,7 +15,7 @@ tab.setup = {
       document.getElementById('theme'),
       document.getElementById('layout'),
       document.getElementById('seo'),
-      document.getElementById('sitemap'),
+      document.getElementById('crawler'),
       document.getElementById('cache'),
       document.getElementById('adsense'),
       document.getElementById('version')
