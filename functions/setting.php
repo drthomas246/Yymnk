@@ -231,9 +231,9 @@ function yymnk_setting(){
                     </td>
                   </tr>
                   <tr>
-                    <th><label>PRISM</label></th>
+                    <th><label>Prism</label></th>
                     <td>
-                    <label><input type="checkbox" name="prism" value="1"<?php if(get_theme_mod('prism','1')){echo " checked=\"checked\"";} ?>>PRISMで&lt;pre&gt;&lt;code&gt;～&lt;/code&gt;&lt;/pre&gt;間をシンタックスハイライトをする</label>
+                    <label><input type="checkbox" name="prism" value="1"<?php if(get_theme_mod('prism','1')){echo " checked=\"checked\"";} ?>>Prismで&lt;pre&gt;&lt;code&gt;～&lt;/code&gt;&lt;/pre&gt;間をシンタックスハイライトをする</label>
                     </td>
                   </tr>
                   <tr>
@@ -742,7 +742,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.5
+                      1.5.1
                     </td>
                   </tr>
                   <tr>
@@ -759,9 +759,12 @@ echo " disabled";
                   </tr>
                   <tr>
                     <th><label for="sidebar">Following third-party resources</label></th>
-                    <td>
-                      This software includes the work that is distributed in the Apache License 2.0.<br/>
-                      php-publisher : Josh Fraser
+                    <td><p>php-publisher : Josh Fraser</br>
+                    This software includes the work that is distributed in the Apache License 2.0.</p>
+                    <p>fancyBox : Janis Skarnelis</br>
+                    Creative Commons Attribution-NonCommercial 3.0 license.</p>
+                    <p>Prism : Lea Verou, Golmote</br>
+                    MIT license</p>
                     </td>
                   </tr>
                 </table>

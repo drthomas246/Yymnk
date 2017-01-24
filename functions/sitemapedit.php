@@ -7,7 +7,7 @@ function yymnk_robot(){
 function yymnk_sitemap($post_ID){
   if(get_theme_mod('sitemap','0')){
     // ライブラリの読み込み
-    require_once get_template_directory() . "./functions/Sitemap.php" ;
+    require_once get_template_directory() . "/functions/Sitemap.php" ;
     // インスタンスの作成
     $stmp = new Sitemap( home_url() ) ;
     $stmp->setPath( get_home_path() ) ;
