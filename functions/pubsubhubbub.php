@@ -49,11 +49,11 @@ function yymnk_check_push_success(){
     switch(get_transient( 'yymnk_errors' )){
       case 'success':
         ?><div id="message" class="notice notice-success is-dismissible"><p>PubSubHubbubは成功しました。</p></div><?php
-        set_transient( 'yymnk_errors','' );
+        set_transient( 'yymnk_errors','' ,10);
       break;
       case 'error':
         ?><div id="message" class="error is-dismissible"><p>PubSubHubbubの送信に失敗しました。</p></div><?php
-        set_transient( 'yymnk_errors','' );
+        set_transient( 'yymnk_errors','' ,10);
       break;
     }
   }

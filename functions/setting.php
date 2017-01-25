@@ -14,7 +14,7 @@ function yymk_add_theme_page(){
   add_theme_page('テーマの設定', 'テーマの設定',8,'setting_by_theme','yymnk_setting');
 }
 function yymnk_setting(){
-  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label']) or isset($_POST['pubsubhubbub'])) {
+  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label']) or isset($_POST['pubsubhubbub']) or isset($_POST['lazy_load'])) {
     yymnk_cache_clear();
     set_theme_mod('twitter_cards', $_POST['twitter_cards']);
     set_theme_mod('adsense_label', $_POST['adsense_label']);
@@ -40,6 +40,11 @@ function yymnk_setting(){
     set_theme_mod('priority_archive', $priority[archive]);
     set_theme_mod('priority_category',$priority[category] );
     set_theme_mod('cache_time', $_POST['cache_time']);
+    if($_POST['lazy_load']){
+      set_theme_mod('lazy_load', $_POST['lazy_load']);
+    }else{
+      set_theme_mod('lazy_load', '0');
+    }
     if($_POST['pubsubhubbub']){
       set_theme_mod('pubsubhubbub', $_POST['pubsubhubbub']);
     }else{
@@ -227,7 +232,14 @@ function yymnk_setting(){
                   <tr>
                     <th><label>fancyBox</label></th>
                     <td>
-                    <label><input type="checkbox" name="fancybox" value="1"<?php if(get_theme_mod('fancybox','1')){echo " checked=\"checked\"";} ?>>ギャラリーにfancyBoxを付ける</label>
+                    <label><input type="checkbox" name="fancybox" value="1"<?php if(get_theme_mod('fancybox','1')){echo " checked=\"checked\"";} ?>>ギャラリーにfancyBox(画像が拡大する)を付ける</label><br/>
+                    （[ギャラリーの編集]の[ギャラリーの設定]にある[リンク先]を[メディアファイル]にしてください）
+                    </td>
+                  </tr>
+                  <tr>
+                    <th><label>Lazy Load</label></th>
+                    <td>
+                    <label><input type="checkbox" name="lazy_load" value="1"<?php if(get_theme_mod('lazy_load','0')){echo " checked=\"checked\"";} ?>>ギャラリーをLazy Load(遅延読み込み)する</label>
                     </td>
                   </tr>
                   <tr>
@@ -242,6 +254,12 @@ function yymnk_setting(){
                     <label><input type="checkbox" name="to-top" value="1"<?php if(get_theme_mod('to-top','0')){echo " checked=\"checked\"";} ?>>表示する</label>
                     </td>
                   </tr>
+                  <tr>
+                    <th><label>関連項目を表示</label></th>
+                    <td>
+                    <label><input type="checkbox" name="related_entry" class="related_entry" value="1"<?php if(get_theme_mod('related_entry','1')){echo " checked=\"checked\"";} ?>>表示する</label>
+                    </td>
+                  </tr>
                   </tbody>
                 </table>
                 <p class="submit"><input type="submit" name="Submit" class="button-primary" value="変更を保存" /></p>
@@ -254,12 +272,6 @@ function yymnk_setting(){
               <div class="inside">
                 <table class="form-table">
                   <tbody>
-                  <tr>
-                    <th><label>関連項目を表示</label></th>
-                    <td>
-                    <label><input type="checkbox" name="related_entry" class="related_entry" value="1"<?php if(get_theme_mod('related_entry','1')){echo " checked=\"checked\"";} ?>>表示する</label>
-                    </td>
-                  </tr>
                   <tr>
                     <th><label for="sidebar">関連項目のタイトル</label></th>
                     <td>
@@ -742,7 +754,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.5.1
+                      1.6
                     </td>
                   </tr>
                   <tr>
@@ -765,6 +777,8 @@ echo " disabled";
                     Creative Commons Attribution-NonCommercial 3.0 license.</p>
                     <p>Prism : Lea Verou, Golmote</br>
                     MIT license</p>
+                    <p>Lazy Load Plugin for jQuery : Mika Tuupola</br>
+                    MIT license</p>
                     </td>
                   </tr>
                 </table>
@@ -779,6 +793,16 @@ echo " disabled";
 }
 
 function yymnk_footer(){
+  if(get_theme_mod('lazy_load','0')){
+?>
+<script type="text/javascript">
+  jQuery('.lazy').lazyload({
+        effect : 'fadeIn',
+        effect_speed: 2000
+    });
+</script>
+<?php
+}
   if(get_theme_mod('fancybox','1')){
 ?>
 <script type="text/javascript">
