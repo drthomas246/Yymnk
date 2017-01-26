@@ -82,7 +82,7 @@ function yymnk_customizer_live_preview()
 {
   wp_enqueue_script(
       'yymnk-themecustomizer',
-      get_template_directory_uri().'/javascript/theme-customize.js',
+      get_template_directory_uri().'/javascript/theme-customize.min.js',
       array('jquery'),
       '1.0',
       true

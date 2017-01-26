@@ -28,12 +28,12 @@ jQuery(function() {
       currentlevel++;
     }
     while(currentlevel > level) {
-      toc += "</ul>";
+      toc += "<\/ul>";
       currentlevel--;
     }
     toc += '<li><a href="#' + this.id + '">' + jQuery(this).html() + "<\/a><\/li>\n";
   });
-  if(toc){ toc = '<div class="mokuji_wrap"><div class="mokuji">【目次】</div>' + toc + '</div>'; }
+  if(toc){ toc = '<div class="mokuji_wrap"><div class="mokuji">【目次】<\/div>' + toc + '<\/div>'; }
   jQuery("#toc").html(toc);
 
   //ページ内リンク#非表示。加速スクロール

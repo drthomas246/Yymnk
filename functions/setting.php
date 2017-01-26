@@ -472,7 +472,7 @@ echo " disabled";
                 <table class="form-table">
                   <tbody>
                   <tr>
-                    <th><label>sitemapの設置</label></th>
+                    <th><label>sitemap.xmlの設置</label></th>
                     <td>
                       <label><input type="checkbox" class="sitemap" name="sitemap" value="1"<?php if(get_theme_mod('sitemap','0')){echo " checked=\"checked\"";} ?>>設置する</label>
                     </td>
@@ -491,7 +491,7 @@ echo " disabled";
           </div>
           <div class="metabox-holder">
             <div class="postbox">
-              <h2 class="hndle">sitemap設定</h2>
+              <h2 class="hndle">sitemap,xml設定</h2>
               <div class="inside">
                 <table class="form-table">
                   <tbody>
@@ -700,10 +700,8 @@ echo " disabled";
                   <tr>
                     <th><label>アドセンスの広告コード</label></th>
                     <td>
-<?php     $adsense_tag = preg_replace('/\\\"/', '"', get_theme_mod('adsense_tag',''));
-    $adsense_tag = preg_replace("/\\\'/", "'", $adsense_tag);?>
                     <label><textarea class="adsense_tag" name="adsense_tag" cols="40" rows="4" placeholder="アドセンスの広告コードを挿入してください
-できるだけレスポンシブルのものがいいです"<?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>><?php echo $adsense_tag; ?></textarea></label>
+できるだけレスポンシブルのものがいいです"<?php if(!get_theme_mod('adsense','0')){echo " disabled";} ?>><?php echo stripslashes(get_theme_mod('adsense_tag','')); ?></textarea></label>
                     </td>
                   </tr>
                   <tr>
@@ -754,7 +752,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.6.2
+                      1.6.3
                     </td>
                   </tr>
                   <tr>

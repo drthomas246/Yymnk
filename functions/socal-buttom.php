@@ -7,8 +7,6 @@ function social_buttom(){
 <h5><?php echo get_theme_mod('social_title','ソーシャルボタン'); ?></h5>
 <?php
       }
-?>
-<?php
 $url_encode=urlencode(get_permalink());
 $title_encode=urlencode(get_the_title()).'｜'.get_bloginfo('name');
 ?>

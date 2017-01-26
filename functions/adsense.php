@@ -12,8 +12,7 @@ function yymnk_adsense($contentData){
         $str='<div class="adsense">広告<br/>';
         break;
     }
-    $adsense_tag = preg_replace('/\\\"/', '"', get_theme_mod('adsense_tag',''));
-    $adsense_tag = preg_replace("/\\\'/", "'", $adsense_tag);
+    $adsense_tag = stripslashes(get_theme_mod('adsense_tag',''));
     $str.=$adsense_tag."</div>";
     if(get_theme_mod('adsense_more','0')){
       $contentData = preg_replace('/<span id="more-[0-9]+"><\/span>/', $str, $contentData);
