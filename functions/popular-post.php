@@ -105,7 +105,7 @@ class MyWidgetItem extends WP_Widget {
             if ( has_post_thumbnail() ) {
               the_post_thumbnail('thumbnail', array('class' => 'thumbnail'));
             } else {
-              ?><img src="<?php echo get_stylesheet_directory_uri(); ?>/img/no_image3.gif" /><?php
+              ?><img src="<?php echo get_stylesheet_directory_uri(); ?>/image/no-image.png" /><?php
             }?>
               <div class="caption"><div class="title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></div>
               <span class="view_count">preview:<?php echo post_custom('yymnk_post_views_count'); ?></span></div></div><?php
