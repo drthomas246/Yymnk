@@ -10,40 +10,40 @@ if(get_theme_mod('sidebar','none')=="right-right"){
   $body="";
   $body = get_transient( $url );
   if($body===false){
-    $body='        <div id="article">
-          '.breadcrumb();
-    if(is_single()){
-      $body.='      <div class="navigation">
-          <ul>
-          <li>';
-      $previous_post = get_previous_post();
-      $pre_post_title = $previous_post->post_title;
-      if ( mb_strlen( $pre_post_title ) > 18 ) { $pre_post_title = mb_substr( $pre_post_title, 0, 18).'...'; }
-      if ( !empty( $previous_post ) ){
-        if(!empty($pre_post_title)){
-          $body.='          <a href="'.esc_url( get_permalink( $previous_post->ID ) ).'" title="'.esc_html( $previous_post->post_title).'">&laquo; '.$pre_post_title.'</a>';
-        }else{
-          $body.='          <a href="'.esc_url( get_permalink( $previous_post->ID ).'" title="'.esc_html( $previous_post->post_title)).'">&laquo; 前の投稿</a>';
-        }
-      }
-      $body.='        </li>
-          <li>';
-      $next_post = get_next_post();
-      $next_post_title = $next_post->post_title;
-      if ( mb_strlen( $next_post_title ) > 18 ) { $next_post_title = mb_substr( $next_post_title, 0, 18).'...'; }
-      if ( !empty( $next_post ) ){
-        if(!empty($next_post_title)){
-          $body.='          <a href="'.esc_url( get_permalink( $next_post->ID )).'" title="'.esc_html( $next_post->post_title).'">'.$next_post_title.'&raquo;</a>';
-        }else{
-          $body.='          <a href="'.esc_url( get_permalink( $next_post->ID ) ).'" title="'.esc_html( $next_post->post_title).'">次の投稿 &raquo;</a>';
-        }
-      }
-      $body.='        </li>
-          </ul>
-        </div>';
-    }
     if (have_posts()) :
       while (have_posts()) : the_post();
+        $body='        <div id="article">
+              '.breadcrumb();
+        if(is_single()){
+          $body.='      <div class="navigation">
+              <ul>
+              <li>';
+          $previous_post = get_previous_post();
+          $pre_post_title = $previous_post->post_title;
+          if ( mb_strlen( $pre_post_title ) > 18 ) { $pre_post_title = mb_substr( $pre_post_title, 0, 18).'...'; }
+          if ( !empty( $previous_post ) ){
+            if(!empty($pre_post_title)){
+              $body.='          <a href="'.esc_url( get_permalink( $previous_post->ID ) ).'" title="'.esc_html( $previous_post->post_title).'">&laquo; '.$pre_post_title.'</a>';
+            }else{
+              $body.='          <a href="'.esc_url( get_permalink( $previous_post->ID ).'" title="'.esc_html( $previous_post->post_title)).'">&laquo; 前の投稿</a>';
+            }
+          }
+          $body.='        </li>
+              <li>';
+          $next_post = get_next_post();
+          $next_post_title = $next_post->post_title;
+          if ( mb_strlen( $next_post_title ) > 18 ) { $next_post_title = mb_substr( $next_post_title, 0, 18).'...'; }
+          if ( !empty( $next_post ) ){
+            if(!empty($next_post_title)){
+              $body.='          <a href="'.esc_url( get_permalink( $next_post->ID )).'" title="'.esc_html( $next_post->post_title).'">'.$next_post_title.' &raquo;</a>';
+            }else{
+              $body.='          <a href="'.esc_url( get_permalink( $next_post->ID ) ).'" title="'.esc_html( $next_post->post_title).'">次の投稿 &raquo;</a>';
+            }
+          }
+          $body.='        </li>
+              </ul>
+            </div>';
+        }
         $classes = get_post_class();
         $separator = ' ';
         $class_output = '';

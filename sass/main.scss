@@ -180,6 +180,26 @@
         aside{
             padding:10px;
             display:block;
+            .widget_latest_wrap{
+                .body{
+	                display: flex;
+                }
+                img {
+	                margin-bottom:5px;
+	                width: 60px;
+	                height: 60px;
+	                margin-right:5px;
+
+                }
+                .title {
+                	margin: 5px;
+	                font-weight: 400;
+                }
+                .view_count {
+                   	color: #666;
+                	font-size:80%;
+                }
+            }
             section{
                 margin-bottom:10px;
                 h3{

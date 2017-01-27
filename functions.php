@@ -4,6 +4,7 @@ if ( ! isset( $content_width ) ) $content_width = 1000;
 //メニューなどの挿入
 function yymnk_setup(){
   add_theme_support( 'menus' );
+  register_nav_menu('header-navi', 'メインメニュー');
   add_theme_support( 'title-tag' );
   add_theme_support('post-thumbnails');
   $custom_header_defaults = array(
@@ -138,3 +139,4 @@ require_once get_template_directory() . '/functions/adsense.php';
 require_once get_template_directory() . '/functions/publisher.php';
 require_once get_template_directory() . '/functions/pubsubhubbub.php';
 require_once get_template_directory() . '/functions/lazyload.php';
+require_once get_template_directory() . '/functions/popular-post.php';
