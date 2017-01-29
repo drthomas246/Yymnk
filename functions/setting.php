@@ -14,7 +14,7 @@ function yymk_add_theme_page(){
   add_theme_page('テーマの設定', 'テーマの設定',8,'setting_by_theme','yymnk_setting');
 }
 function yymnk_setting(){
-  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label']) or isset($_POST['pubsubhubbub']) or isset($_POST['lazy_load'])) {
+  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label']) or isset($_POST['pubsubhubbub']) or isset($_POST['lazy_load']) or isset($_POST['img_compression'])) {
     yymnk_cache_clear();
     set_theme_mod('twitter_cards', $_POST['twitter_cards']);
     set_theme_mod('adsense_label', $_POST['adsense_label']);
@@ -40,6 +40,11 @@ function yymnk_setting(){
     set_theme_mod('priority_archive', $priority[archive]);
     set_theme_mod('priority_category',$priority[category] );
     set_theme_mod('cache_time', $_POST['cache_time']);
+    if($_POST['img_compression']){
+      set_theme_mod('img_compression', $_POST['lazy_load']);
+    }else{
+      set_theme_mod('img_compression', '0');
+    }
     if($_POST['lazy_load']){
       set_theme_mod('lazy_load', $_POST['lazy_load']);
     }else{
@@ -667,6 +672,11 @@ echo " disabled";
                     <td>
                     <label><input type="checkbox" class="cache_sidbar_b" name="cache_sidbar_b" value="1"<?php if(get_theme_mod('cache_sidbar_b','0')){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('cache','0')){echo " disabled";} ?>>キャッシュする</label>
                   </tr>
+                  <tr>
+                  <th><label>メディアの圧縮</label></th>
+                    <td>
+                    <label><input type="checkbox" class="img_compression" name="img_compression" value="1"<?php if(get_theme_mod('img_compression','1')){echo " checked=\"checked\"";} ?>>jpg画像とpng画像をアップロードするときにファイルを圧縮する</label>
+                  </tr>
                 </tbody>
                 </table>
                 <p class="submit"><input type="submit" name="Submit" class="button-primary" value="変更を保存" /></p>
@@ -752,13 +762,13 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.7.2
+                      1.8
                     </td>
                   </tr>
                   <tr>
                     <th><label for="sidebar">ライセンス</label></th>
                     <td>
-                      GNU General Public License Ver 3
+                      GNU General Public License Version 3
                     </td>
                   </tr>
                   <tr>
@@ -769,14 +779,18 @@ echo " disabled";
                   </tr>
                   <tr>
                     <th><label for="sidebar">Following third-party resources</label></th>
-                    <td><p>php-publisher : Josh Fraser</br>
+                    <td><p>php-publisher : Josh Fraser<br/>
                     This software includes the work that is distributed in the Apache License 2.0.</p>
-                    <p>fancyBox : Janis Skarnelis</br>
+                    <p>fancyBox : Janis Skarnelis<br/>
                     Creative Commons Attribution-NonCommercial 3.0 license.</p>
-                    <p>Prism : Lea Verou, Golmote</br>
+                    <p>Prism : Lea Verou, Golmote<br/>
                     MIT license</p>
-                    <p>Lazy Load Plugin for jQuery : Mika Tuupola</br>
+                    <p>Lazy Load Plugin for jQuery : Mika Tuupola<br/>
                     MIT license</p>
+                    <p>jpegtran : Thomas G. Lane, Guido Vollbeding<br/>
+                    This software is based in part on the work of the Independent JPEG Group.</p>
+                    <p>pngquant : Jef Poskanzer and Greg Roelofs<br/>
+                    GNU General Public License Version 3</p>
                     </td>
                   </tr>
                 </table>

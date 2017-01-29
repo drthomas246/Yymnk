@@ -140,3 +140,4 @@ require_once get_template_directory() . '/functions/publisher.php';
 require_once get_template_directory() . '/functions/pubsubhubbub.php';
 require_once get_template_directory() . '/functions/lazyload.php';
 require_once get_template_directory() . '/functions/popular-post.php';
+require_once get_template_directory() . '/functions/media-compression.php';
