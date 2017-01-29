@@ -215,7 +215,7 @@ function yymnk_setting(){
       <li><a href="#layout">レイアウト関係</a></li>
       <li><a href="#seo">SEO設定</a></li>
       <li><a href="#crawler">クローラー対策</a></li>
-      <li><a href="#cache">キャッシュ</a></li>
+      <li><a href="#cache">表示速度</a></li>
       <li><a href="#adsense">アドセンス</a></li>
       <li><a href="#version">バージョン情報</a></li>
     </ul>
@@ -672,6 +672,18 @@ echo " disabled";
                     <td>
                     <label><input type="checkbox" class="cache_sidbar_b" name="cache_sidbar_b" value="1"<?php if(get_theme_mod('cache_sidbar_b','0')){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('cache','0')){echo " disabled";} ?>>キャッシュする</label>
                   </tr>
+                </tbody>
+                </table>
+                <p class="submit"><input type="submit" name="Submit" class="button-primary" value="変更を保存" /></p>
+              </div>
+            </div>
+          </div>
+          <div class="metabox-holder">
+            <div class="postbox">
+              <h2 class="hndle">メディア</h2>
+              <div class="inside">
+                <table class="form-table">
+                  <tbody>
                   <tr>
                   <th><label>メディアの圧縮</label></th>
                     <td>
@@ -762,7 +774,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.8
+                      1.8.1
                     </td>
                   </tr>
                   <tr>
