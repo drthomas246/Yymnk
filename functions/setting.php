@@ -774,7 +774,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.8.1
+                      1.8.2
                     </td>
                   </tr>
                   <tr>
@@ -786,22 +786,24 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">ライセンスURI</label></th>
                     <td>
-                      <a href="https://www.gnu.org/licenses/gpl.html">https://www.gnu.org/licenses/gpl.html</a>
+                      <a href="https://www.gnu.org/licenses/gpl.html" target="_blank">https://www.gnu.org/licenses/gpl.html</a>
                     </td>
                   </tr>
                   <tr>
                     <th><label for="sidebar">Following third-party resources</label></th>
-                    <td><p>php-publisher : Josh Fraser<br/>
+                    <td><p><a href="https://github.com/pfefferle/php-pubsubhubbub" target="_blank">php-publisher</a> : Josh Fraser<br/>
                     This software includes the work that is distributed in the Apache License 2.0.</p>
-                    <p>fancyBox : Janis Skarnelis<br/>
+                    <p><a href="http://fancyapps.com/fancybox/" target="_blank">fancyBox</a> : Janis Skarnelis<br/>
                     Creative Commons Attribution-NonCommercial 3.0 license.</p>
-                    <p>Prism : Lea Verou, Golmote<br/>
+                    <p><a href="http://prismjs.com/" target="_blank">Prism</a> : Lea Verou, Golmote<br/>
                     MIT license</p>
-                    <p>Lazy Load Plugin for jQuery : Mika Tuupola<br/>
+                    <p><a href="http://www.appelsiini.net/projects/lazyload" target="_blank">Lazy Load Plugin for jQuery</a> : Mika Tuupola<br/>
                     MIT license</p>
-                    <p>jpegtran : Thomas G. Lane, Guido Vollbeding<br/>
+                    <p><a href="https://github.com/o/sitemap-php" target="_blank">Sitemap</a> : Osman Üngür<br/>
+                    MIT license</p>
+                    <p><a href="http://www.ijg.org/" target="_blank">jpegtran</a> : Thomas G. Lane, Guido Vollbeding<br/>
                     This software is based in part on the work of the Independent JPEG Group.</p>
-                    <p>pngquant : Jef Poskanzer and Greg Roelofs<br/>
+                    <p><a href="https://pngquant.org/" target="_blank">pngquant</a> : Jef Poskanzer and Greg Roelofs<br/>
                     GNU General Public License Version 3</p>
                     </td>
                   </tr>
