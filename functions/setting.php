@@ -14,8 +14,15 @@ function yymk_add_theme_page(){
   add_theme_page('テーマの設定', 'テーマの設定',8,'setting_by_theme','yymnk_setting');
 }
 function yymnk_setting(){
-  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label']) or isset($_POST['pubsubhubbub']) or isset($_POST['lazy_load']) or isset($_POST['img_compression'])) {
+  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label']) or isset($_POST['pubsubhubbub']) or isset($_POST['lazy_load']) or isset($_POST['img_compression']) or isset($_POST['view_chacker']) or isset($_FILES['upfile'])) {
     yymnk_cache_clear();
+    set_theme_mod('view_chacker', $_POST['view_chacker']);
+    if ($_FILES['upfile']['type']=="text/css" or $_FILES['upfile']['type']=="image/png" or $_FILES['upfile']['type']=="image/jpeg" or $_FILES['upfile']['type']=="image/gif"){
+      yymnk_view_changer_upload($_FILES['upfile']);
+      if ($_FILES['upfile']['type']=="text/css"){
+        set_theme_mod('view_chacker', $_FILES['upfile']['name']);
+      }
+    }
     set_theme_mod('twitter_cards', $_POST['twitter_cards']);
     set_theme_mod('adsense_label', $_POST['adsense_label']);
     set_theme_mod('adsense_tag', $_POST['adsense_tag']);
@@ -219,7 +226,7 @@ function yymnk_setting(){
       <li><a href="#adsense">アドセンス</a></li>
       <li><a href="#version">バージョン情報</a></li>
     </ul>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
       <dl id="theme">
         <dd>
           <div class="metabox-holder">
@@ -293,6 +300,35 @@ function yymnk_setting(){
       </dl>
       <dl id="layout">
         <dd>
+          <div class="metabox-holder">
+            <div class="postbox">
+              <h2 class="hndle">ビューチェンジ</h2>
+              <div class="inside">
+                <table class="form-table">
+                  <tr>
+                    <th><label>追加するCSS</label></th>
+                    <td>
+                      <select name="view_chacker">
+                        <option value="summary"<?php if(get_theme_mod('view_chacker','-')=="-"){echo " selected";} ?>>なし</option>
+<?php
+yymnk_view_changer();
+?>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th><label>アップロードファイル</label></th>
+                    <td>
+                     <input type="file" name="upfile"/><br/>
+                     css jpg png gifのみアップロードできます。
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
+                <p class="submit"><input type="submit" name="Submit" class="button-primary" value="変更を保存" /></p>
+              </div>
+            </div>
+          </div>
           <div class="metabox-holder">
             <div class="postbox">
               <h2 class="hndle">サイドバー</h2>
@@ -774,7 +810,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      1.8.2
+                      2.0
                     </td>
                   </tr>
                   <tr>
