@@ -51,6 +51,13 @@
       $('.tracking_id').prop('disabled',true);
     }
   });
+  $('.lazy_load').change(function(){
+    if($(this).prop( 'checked' )){
+      $('.lazy_load_effect').prop('disabled',false);
+    }else{
+      $('.lazy_load_effect').prop('disabled',true);
+    }
+  });
   $('.sitemap').change(function(){
     if($(this).prop( 'checked' )){
       $('.changefreq').prop('disabled',false);

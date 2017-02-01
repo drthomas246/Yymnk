@@ -1,7 +1,5 @@
 <?php
 function yymnk_customize_register( $wp_customize ) {
-//この間に設定していきます。
-//フォントカラーの設定
   $wp_customize->add_setting(
     'yymnk_text_color_value',
      array(
@@ -22,7 +20,6 @@ function yymnk_customize_register( $wp_customize ) {
       )
     ) 
   );
-//リンクホバーの色
   $wp_customize->add_setting(
     'yymnk_hover_color_value',
      array(
@@ -55,7 +52,6 @@ function yymnk_customize_register( $wp_customize ) {
           'transport'     =>'postMessage',
         )
       );
-      // Add the conrol of font style.
       $wp_customize->add_control(
         new WP_Customize_Control(
           $wp_customize,
@@ -91,7 +87,6 @@ function yymnk_customizer_live_preview()
 add_action( 'customize_preview_init', 'yymnk_customizer_live_preview' );
 
 function yymnk_css_modes() {
-//ここの間に設定していきます。
 ?>
 <style type="text/css">
   body{

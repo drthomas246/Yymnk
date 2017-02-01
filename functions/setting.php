@@ -14,7 +14,7 @@ function yymk_add_theme_page(){
   add_theme_page('テーマの設定', 'テーマの設定',8,'setting_by_theme','yymnk_setting');
 }
 function yymnk_setting(){
-  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label']) or isset($_POST['pubsubhubbub']) or isset($_POST['lazy_load']) or isset($_POST['img_compression']) or isset($_POST['view_chacker']) or isset($_FILES['upfile'])) {
+  if ( isset($_POST['twitter_cards']) or isset($_POST['twitter_site']) or isset($_POST['sidebar']) or isset($_POST['seo']) or isset($_POST['fancybox']) or isset($_POST['analytics']) or isset($_POST['tracking_id']) or isset($_POST['buttom']) or isset($_POST['related_entry']) or isset($_POST['social_title']) or isset($_POST['related_entry_title']) or isset($_POST['table_of_contents']) or isset($_POST['description']) or isset($_POST['prism']) or isset($_POST['copyright_auther']) or isset($_POST['copyright']) or isset($_POST['copyright_old_start']) or isset($_POST['copyright_new_end']) or isset($_POST['copyright_start']) or isset($_POST['copyright_end']) or isset($_POST['to-top']) or isset($_POST['sitemap']) or isset($_POST['changefreq']) or isset($_POST['priority']) or isset($_POST['cache_time']) or isset($_POST['cache_sidbar_a']) or isset($_POST['cache_sidbar_b']) or isset($_POST['cache']) or isset($_POST['adsense']) or isset($_POST['adsense_tag']) or isset($_POST['adsense_more']) or isset($_POST['adsense_buttom']) or isset($_POST['adsense_nbsp']) or isset($_POST['adsense_shortcode']) or isset($_POST['adsense_label']) or isset($_POST['pubsubhubbub']) or isset($_POST['lazy_load']) or isset($_POST['img_compression']) or isset($_POST['view_chacker']) or isset($_POST['lazy_load_effect'])) {
     yymnk_cache_clear();
     set_theme_mod('view_chacker', $_POST['view_chacker']);
     if ($_FILES['upfile']['type']=="text/css" or $_FILES['upfile']['type']=="image/png" or $_FILES['upfile']['type']=="image/jpeg" or $_FILES['upfile']['type']=="image/gif"){
@@ -56,6 +56,11 @@ function yymnk_setting(){
       set_theme_mod('lazy_load', $_POST['lazy_load']);
     }else{
       set_theme_mod('lazy_load', '0');
+    }
+    if($_POST['lazy_load']){
+      set_theme_mod('lazy_load_effect', $_POST['lazy_load_effect']);
+    }else{
+      set_theme_mod('lazy_load_effect', '0');
     }
     if($_POST['pubsubhubbub']){
       set_theme_mod('pubsubhubbub', $_POST['pubsubhubbub']);
@@ -251,7 +256,7 @@ function yymnk_setting(){
                   <tr>
                     <th><label>Lazy Load</label></th>
                     <td>
-                    <label><input type="checkbox" name="lazy_load" value="1"<?php if(get_theme_mod('lazy_load','0')){echo " checked=\"checked\"";} ?>>ギャラリーをLazy Load(遅延読み込み)する</label>
+                    <label><input type="checkbox" class="lazy_load" name="lazy_load" value="1"<?php if(get_theme_mod('lazy_load','0')){echo " checked=\"checked\"";} ?>>ギャラリーをLazy Load(遅延読み込み)する</label>
                     </td>
                   </tr>
                   <tr>
@@ -296,6 +301,24 @@ function yymnk_setting(){
               </div>
             </div>
           </div>
+          <div class="metabox-holder">
+            <div class="postbox">
+              <h2 class="hndle">Lazy Load</h2>
+              <div class="inside">
+                <table class="form-table">
+                  <tbody>
+                  <tr>
+                    <th><label for="sidebar">エフェクト</label></th>
+                    <td>
+                      <label><input type="checkbox" class="lazy_load_effect" name="lazy_load_effect" value="1"<?php if(get_theme_mod('lazy_load_effect','0')){echo " checked=\"checked\"";} ?><?php if(!get_theme_mod('lazy_load','0')){echo " disabled";} ?>>フェードイン効果をつける</label>
+                    </td>
+                  </tr>
+                  </tbody>
+                  </table>
+                <p class="submit"><input type="submit" name="Submit" class="button-primary" value="変更を保存" /></p>
+              </div>
+            </div>
+          </div>
         </dd>
       </dl>
       <dl id="layout">
@@ -320,8 +343,8 @@ yymnk_view_changer();
                     <th><label>アップロードファイル</label></th>
                     <td>
                      <input type="file" name="upfile"/><br/>
-                     css jpg png gifのみアップロードできます。
-                    </td>
+                     (css jpg png gifのみアップロードできます。ファイル名に日本語を入れないでください。うまくアップロードできません。)<br/>
+                     テーマのスタイルシートレイアウトは<a href="<?php echo bloginfo( 'template_url' );?>/style.pdf">こちら</a>（pdfファイル）
                   </tr>
                   </tbody>
                 </table>
@@ -810,7 +833,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      2.0
+                      2.1
                     </td>
                   </tr>
                   <tr>
@@ -857,42 +880,25 @@ echo " disabled";
 function yymnk_footer(){
   if(get_theme_mod('lazy_load','0')){
 ?>
-<script type="text/javascript">
-  jQuery('.lazy').lazyload({
-        effect : 'fadeIn',
-        effect_speed: 2000
-    });
+<script type="text/javascript"><?php
+$javascript="jQuery('.lazy').lazyload(";
+if(get_theme_mod('lazy_load_effect','0')){
+  $javascript.="{effect : 'fadeIn',effect_speed: 2000}";
+}
+$javascript.=");";
+echo $javascript;
+?>
 </script>
 <?php
 }
   if(get_theme_mod('fancybox','1')){
 ?>
-<script type="text/javascript">
-jQuery(document).ready(function() {
-  jQuery('.fancybox').fancybox();
-});
-jQuery(function(){
-  jQuery('.gallery-icon a').addClass('fancybox');
-  for (var i = 0; i < jQuery('div.gallery').get().length; i++) {
-    var idname=jQuery('div.gallery').eq(i).attr("id");
-    jQuery('#'+idname+' .gallery-icon a').attr("data-fancybox-group",idname);
-  }
-});
-</script>
+<script type="text/javascript">jQuery(document).ready(function(){jQuery('.fancybox').fancybox();});jQuery(function(){jQuery('.gallery-icon a').addClass('fancybox');for (var i = 0; i < jQuery('div.gallery').get().length; i++) {var idname=jQuery('div.gallery').eq(i).attr("id");jQuery('#'+idname+' .gallery-icon a').attr("data-fancybox-group",idname);}});</script>
 <?php
   }
   if(get_theme_mod('analytics','0') and get_theme_mod('tracking_id','')){
 ?>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', '<?php echo get_theme_mod('tracking_id',''); ?>', 'auto');
-  ga('send', 'pageview');
-
-</script>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '<?php echo get_theme_mod('tracking_id',''); ?>', 'auto');ga('send', 'pageview');</script>
 <?php
   }
   if(get_theme_mod('to-top','0')){

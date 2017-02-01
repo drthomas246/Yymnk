@@ -2,7 +2,6 @@
 function yymnk_view_changer(){
   $dir=get_template_directory().'/css/display/';
   if (is_dir( $dir ) && $handle = opendir($dir)) {
-    /* ディレクトリをループする際の正しい方法です */
     while (false !== ($file = readdir($handle))) {
       if( filetype( $path = $dir . $file ) == "file" ) {
         if(substr($path, strrpos($path, '.') + 1)=="css"){
