@@ -1,11 +1,11 @@
 header{
-background: url('four-leaf-clover.png') 0 -119px no-repeat;
+background: url('%url%four-leaf-clover.png') 0 -119px no-repeat;
 padding-bottom:10px;
 border-bottom:2px #9acd32 dotted;
 }
 header nav li{
 	padding:10px;
-	background: url('four-leaf-clover.png') -829px -54px no-repeat;
+	background: url('%url%four-leaf-clover.png') -829px -54px no-repeat;
 }
 footer{
 border-top:2px #9acd32 dotted;
@@ -13,5 +13,5 @@ padding-top:10px;
 }
 aside section h3{
 padding:5px 0 5px;
-background: url('four-leaf-clover.png') -879px -31px no-repeat;
+background: url('%url%four-leaf-clover.png') -879px -31px no-repeat;
 }

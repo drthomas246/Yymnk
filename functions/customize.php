@@ -87,37 +87,45 @@ function yymnk_customizer_live_preview()
 add_action( 'customize_preview_init', 'yymnk_customizer_live_preview' );
 
 function yymnk_css_modes() {
-?>
-<style type="text/css">
-  body{
-    color:<?php echo get_theme_mod( 'yymnk_text_color_value','#000000' );?>;
-<?php
+  $body='<style type="text/css">';
+  switch (get_theme_mod('sidebar','none')){
+  case "none";
+    $body.= file_get_contents(get_stylesheet_directory() . '/css/none.css');
+    break;
+  case "right";
+    $body.= file_get_contents(get_stylesheet_directory() . '/css/right.css');
+    break;
+  case "left";
+    $body.= file_get_contents(get_stylesheet_directory() . '/css/left.css');
+    break;
+  case "left-right";
+    $body.= file_get_contents(get_stylesheet_directory() . '/css/left-right.css');
+    break;
+  case "left-left";
+    $body.= file_get_contents(get_stylesheet_directory() . '/css/left-left.css');
+    break;
+  case "right-right";
+    $body.= file_get_contents(get_stylesheet_directory() . '/css/right-right.css');
+    break;
+  }
+  $body.="body{color:".get_theme_mod( 'yymnk_text_color_value','#000000' ).";";
   switch(get_theme_mod( 'yymnk_font_value','serif' )){
     case 'serif':
-?>
-    font-family:"Times New Roman", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "ＭＳ Ｐ明朝", "MS PMincho",serif;
-<?php
-    break;
+      $body.='font-family:"Times New Roman", "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "ＭＳ Ｐ明朝", "MS PMincho",serif;';
+      break;
     case 'sans-serif':
-?>
-    font-family:Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック", sans-serif;
-<?php
-    break;
+      $body.='font-family:Verdana, Roboto, "Droid Sans", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック", sans-serif;';
+      break;
     case 'cursive':
-?>
-    font-family:"Comic Sans MS","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO","ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN","メイリオ", Meiryo,cursive;
-<?php
-    break;
+      $body.='font-family:"Comic Sans MS","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO","ヒラギノ丸ゴ ProN W4", "Hiragino Maru Gothic ProN","メイリオ", Meiryo,cursive;';
+      break;
   }
-?>
+  $body.="}a{color:".get_theme_mod( 'yymnk_text_color_value','#000000' ).";}a:hover{color:".get_theme_mod( 'yymnk_hover_color_value','#000000' ).";}";
+  if(get_theme_mod('view_chacker','-')!="-"){
+    $buf=file_get_contents(get_stylesheet_directory() . '/css/display/'.get_theme_mod('view_chacker','-'));
+    $body.=str_replace("%url%", get_stylesheet_directory_uri() . '/css/display/', $buf);
   }
-  a{
-    color:<?php echo get_theme_mod( 'yymnk_text_color_value','#000000' );?>;
-  }
-  a:hover{
-    color:<?php echo get_theme_mod( 'yymnk_hover_color_value','#000000' );?>;
-  }
-</style>
-<?php
+  $body.="</style>\n";
+  echo $body;
 }
 add_action( 'wp_head', 'yymnk_css_modes');

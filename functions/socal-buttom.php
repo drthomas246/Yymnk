@@ -98,4 +98,4 @@ function yymnk_facebook_footer(){
     }
   }
 }
-add_action('wp_footer','yymnk_facebook_footer');
+add_action('wp_footer','yymnk_facebook_footer',20);
