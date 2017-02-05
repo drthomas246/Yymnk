@@ -31,7 +31,7 @@ function related_entry($post){
             <?php if ( has_post_thumbnail() ): ?>
               <?php echo get_the_post_thumbnail($post->ID, 'thumb-elated-entriy');?>
             <?php else: ?>
-              <img src="<?php echo get_template_directory_uri(); ?>/image/no-image.png" alt="NO IMAGE" title="NO IMAGE" width="60px" />
+              <img src="<?php echo get_template_directory_uri(); ?>/image/no-image.png" alt="NO IMAGE" title="NO IMAGE" width="60px" height="60px"/>
             <?php endif; ?>
           </a>
         </div><!-- /.related-entry-thumb -->

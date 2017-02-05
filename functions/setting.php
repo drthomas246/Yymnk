@@ -857,7 +857,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      3.0
+                      3.1
                     </td>
                   </tr>
                   <tr>
@@ -904,7 +904,7 @@ echo " disabled";
 function yymnk_footer(){
   if(get_theme_mod('lazy_load','0')){
 ?>
-<script type="text/javascript"><?php
+<script type='text/javascript'async charset='UTF-8'><?php
 $javascript="jQuery('.lazy').lazyload(";
 if(get_theme_mod('lazy_load_effect','0')){
   $javascript.="{effect : 'fadeIn',effect_speed: 2000}";
@@ -917,12 +917,12 @@ echo $javascript;
 }
   if(get_theme_mod('fancybox','1')){
 ?>
-<script type="text/javascript">jQuery(document).ready(function(){jQuery('.fancybox').fancybox();});jQuery(function(){jQuery('.gallery-icon a').addClass('fancybox');for (var i = 0; i < jQuery('div.gallery').get().length; i++) {var idname=jQuery('div.gallery').eq(i).attr("id");jQuery('#'+idname+' .gallery-icon a').attr("data-fancybox-group",idname);}});</script>
+<script type='text/javascript'async charset='UTF-8'>jQuery(document).ready(function(){jQuery('.fancybox').fancybox();});jQuery(function(){jQuery('.gallery-icon a').addClass('fancybox');for (var i = 0; i < jQuery('div.gallery').get().length; i++) {var idname=jQuery('div.gallery').eq(i).attr("id");jQuery('#'+idname+' .gallery-icon a').attr("data-fancybox-group",idname);}});</script>
 <?php
   }
   if(get_theme_mod('analytics','0') and get_theme_mod('tracking_id','')){
 ?>
-<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '<?php echo get_theme_mod('tracking_id',''); ?>', 'auto');ga('send', 'pageview');</script>
+<script async charset='UTF-8'>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', '<?php echo get_theme_mod('tracking_id',''); ?>', 'auto');ga('send', 'pageview');</script>
 <?php
   }
   if(get_theme_mod('to-top','0')){

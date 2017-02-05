@@ -7,9 +7,9 @@ if(get_theme_mod('sidebar','none')=="right-right"){
      get_sidebar('alpha');
   }
 ?>
-    <div id="article">
+    <div id='article'>
     <?php breadcrumb(); ?>
-      <div class="navigation">
+      <div class='navigation'>
         <ul>
           <li><?php next_posts_link('&laquo; 前へ'); ?></li>
           <li><?php previous_posts_link('次へ &raquo;'); ?></li>
@@ -19,7 +19,7 @@ if(get_theme_mod('sidebar','none')=="right-right"){
 <?php
   if ( $wp_query -> max_num_pages > 1 ) :
 ?>
-      <div class="navigation">
+      <div class='navigation'>
         <ul>
           <li><?php next_posts_link('&laquo; 前へ'); ?></li>
           <li><?php previous_posts_link('次へ &raquo;'); ?></li>
