@@ -72,6 +72,7 @@ function yymnk_script_output() {
   if(get_theme_mod('jquery','1')==0){
     wp_enqueue_script('jquery');
   }
+  wp_enqueue_script('loadcss',get_stylesheet_directory_uri() . '/javascript/loadCSS.js',array(),1.0,true);
   wp_enqueue_script('myscript', get_stylesheet_directory_uri() . '/javascript/myscript.min.js',array(),1.0,true);
   if(get_theme_mod('prism','1')){
     wp_enqueue_script('prismjs', get_stylesheet_directory_uri() . '/javascript/prism.js', array(), '2.8.1',true);
@@ -123,13 +124,13 @@ function yymnk_css_late_load(){
   if(get_theme_mod('fancybox','1') or get_theme_mod('prism','1') or get_theme_mod('to-top','0')){
     $body="<script type='text/javascript' async charset='UTF-8'>";
     if(get_theme_mod('fancybox','1')){
-      $body.="var link = document.createElement('link');link.href = '".get_stylesheet_directory_uri()."/fancyBox/source/jquery.fancybox.pack.css';link.rel = 'stylesheet';link.type = 'text/css';var head = document.getElementsByTagName('head')[0];head.appendChild(link);";
+      $body.="loadCSS('".get_stylesheet_directory_uri()."/fancyBox/source/jquery.fancybox.pack.css');";
     }
     if(get_theme_mod('prism','1')){
-      $body.="var link = document.createElement('link');link.href = '".get_stylesheet_directory_uri()."/css/prism.min.css';link.rel = 'stylesheet';link.type = 'text/css';var head = document.getElementsByTagName('head')[0];head.appendChild(link);";
+      $body.="loadCSS('".get_stylesheet_directory_uri()."/css/prism.css');";
     }
     if(get_theme_mod('to-top','0')){
-      $body.="var link = document.createElement('link');link.href = '".get_stylesheet_directory_uri()."/css/to-top.min.css';link.rel = 'stylesheet';link.type = 'text/css';var head = document.getElementsByTagName('head')[0];head.appendChild(link);";
+      $body.="loadCSS('".get_stylesheet_directory_uri()."/css/to-top.min.css');";
     }
     $body.="</script>\n";
     echo $body;

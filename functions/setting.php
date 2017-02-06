@@ -857,7 +857,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      3.1
+                      3.2
                     </td>
                   </tr>
                   <tr>
@@ -888,6 +888,8 @@ echo " disabled";
                     This software is based in part on the work of the Independent JPEG Group.</p>
                     <p><a href="https://pngquant.org/" target="_blank">pngquant</a> : Jef Poskanzer and Greg Roelofs<br/>
                     GNU General Public License Version 3</p>
+                    <p><a href="https://github.com/filamentgroup/loadCSS" target="_blank">loadCSS</a> : scottjehl, Filament Group, Inc.<br/>
+                    MIT license</p>
                     </td>
                   </tr>
                 </table>
