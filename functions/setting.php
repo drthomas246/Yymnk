@@ -857,7 +857,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      3.2
+                      3.3
                     </td>
                   </tr>
                   <tr>
@@ -906,7 +906,7 @@ echo " disabled";
 function yymnk_footer(){
   if(get_theme_mod('lazy_load','0')){
 ?>
-<script type='text/javascript'async charset='UTF-8'><?php
+<script type='text/javascript' async charset='UTF-8'><?php
 $javascript="jQuery('.lazy').lazyload(";
 if(get_theme_mod('lazy_load_effect','0')){
   $javascript.="{effect : 'fadeIn',effect_speed: 2000}";
@@ -919,7 +919,7 @@ echo $javascript;
 }
   if(get_theme_mod('fancybox','1')){
 ?>
-<script type='text/javascript'async charset='UTF-8'>jQuery(document).ready(function(){jQuery('.fancybox').fancybox();});jQuery(function(){jQuery('.gallery-icon a').addClass('fancybox');for (var i = 0; i < jQuery('div.gallery').get().length; i++) {var idname=jQuery('div.gallery').eq(i).attr("id");jQuery('#'+idname+' .gallery-icon a').attr("data-fancybox-group",idname);}});</script>
+<script type='text/javascript' async charset='UTF-8'>jQuery(document).ready(function(){jQuery('.fancybox').fancybox();});jQuery(function(){jQuery('.gallery-icon a').addClass('fancybox');for (var i = 0; i < jQuery('div.gallery').get().length; i++) {var idname=jQuery('div.gallery').eq(i).attr("id");jQuery('#'+idname+' .gallery-icon a').attr("data-fancybox-group",idname);}});</script>
 <?php
   }
   if(get_theme_mod('analytics','0') and get_theme_mod('tracking_id','')){
