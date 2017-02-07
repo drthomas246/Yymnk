@@ -105,8 +105,10 @@ function new_excerpt_more($more) {
 add_filter('excerpt_more', 'new_excerpt_more');
 
 function yymnk_deregister_script() {
-  if(get_theme_mod('jquery','1')){
-    wp_deregister_script('jquery');
+  if(!is_admin() and !is_customize_preview()){
+    if(get_theme_mod('jquery','1')){
+      wp_deregister_script('jquery');
+    }
   }
 }
 add_action('wp_print_scripts','yymnk_deregister_script',100);

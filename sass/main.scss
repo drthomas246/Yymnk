@@ -238,7 +238,6 @@
 	margin: 0 auto;
 	font-family: 'Open Sans', sans-serif;
 	line-height: 1;
-	background: #ffffff;
 }
 #menu-line {
 	position: absolute;
@@ -311,9 +310,6 @@
 	text-decoration: none;
 	color: #dddddd;
 	transition: color .2s ease;
-}
-#cssmenu ul ul li:hover > a, #cssmenu ul ul li a:hover {
-	color: #ffffff;
 }
 #cssmenu.align-right ul ul.sub-menu li > a::after {
 	right: auto;

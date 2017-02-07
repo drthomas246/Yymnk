@@ -26,9 +26,11 @@ function getCssPropertyForRule(rule, prop) {
       $('a').hover(
         function () {
           $(this).css( 'color',hover_color );
+          $("#cssmenu ul ul li a").css("color","#ffffff");
         },
         function () {
           $(this).css( 'color',newval );
+          $("#cssmenu ul ul li a").css("color","#dddddd");
         }
       );
     } );
@@ -42,14 +44,18 @@ function getCssPropertyForRule(rule, prop) {
       text_color=$('body').css( 'color');
       $( 'body' ).css( 'color',text_color );
       $('a').css( 'color',text_color );
+      $("#menu-line").css( "background-color",newval );
       $('a').hover(
         function () {
           $(this).css( 'color',newval );
+          $("#cssmenu ul ul li a").css("color","#ffffff");
         },
         function () {
           $(this).css( 'color',text_color );
+          $("#cssmenu ul ul li a").css("color","#dddddd");
         }
       );
+      
     } );
   } );
   wp.customize( 'yymnk_font_value', function( value ) {
