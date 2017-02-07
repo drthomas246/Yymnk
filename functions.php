@@ -92,6 +92,7 @@ function yymnk_script_output() {
 add_action( 'wp_enqueue_scripts', 'yymnk_script_output',5);
 
 function yymnk_admin_script_output(){
+    wp_enqueue_script('jquery');
     wp_enqueue_style('yymnk_admin_css', get_stylesheet_directory_uri() . '/css/admin.min.css');
     wp_enqueue_script('yymnk_admin_tab_js', get_stylesheet_directory_uri() . '/javascript/admin-tab.min.js', array(), '1.0',true);
     wp_enqueue_script('yymnk_admin_js', get_stylesheet_directory_uri() . '/javascript/admin.min.js', array('jquery'), '1.0',true);

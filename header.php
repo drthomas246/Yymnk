@@ -23,6 +23,6 @@
 }
 ?>
         <nav>
-          <?php echo wp_nav_menu( array ( 'theme_location' => 'header-navi','container_id'=>'cssmenu','depth'=>3, 'echo'=>false ) ); ?>
+          <?php wp_nav_menu( array ( 'theme_location' => 'header-navi','container_id'=>'cssmenu','depth'=>3) ); ?>
         </nav>
       </header>

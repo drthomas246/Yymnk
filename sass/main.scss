@@ -209,6 +209,9 @@
         }
     }
 }
+/*
+    メニューバー設定
+*/
 #cssmenu, #cssmenu ul, #cssmenu ul li, #cssmenu ul li a, #cssmenu #menu-button {
 	margin: 0;
 	padding: 0;
@@ -242,7 +245,6 @@
 	top: 0;
 	left: 0;
 	height: 3px;
-	background: #009ae1;
 	transition: all 0.25s ease-out;
 }
 #cssmenu > ul > li {
@@ -273,14 +275,8 @@
 	color: #000000;
 	transition: color .2s ease;
 }
-#cssmenu > ul > li:hover > a, #cssmenu > ul > li.active > a {
-	color: #009ae1;
-}
 #cssmenu > ul > .sub-menu >li > a {
 	padding-right: 25px;
-}
-#cssmenu > ul.sub-menu >li:hover > a::after {
-	border-color: #009ae1;
 }
 #cssmenu ul ul {
 	position: absolute;

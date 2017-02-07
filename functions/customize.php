@@ -78,7 +78,7 @@ function yymnk_customizer_live_preview()
 {
   wp_enqueue_script(
       'yymnk-themecustomizer',
-      get_template_directory_uri().'/javascript/theme-customize.min.js',
+      get_template_directory_uri().'/javascript/theme-customize.js',
       array('jquery'),
       '1.0',
       true
@@ -108,6 +108,9 @@ function yymnk_css_modes() {
     $body.= file_get_contents(get_stylesheet_directory() . '/css/right-right.css');
     break;
   }
+  $body.="#menu-line{background:".get_theme_mod( 'yymnk_hover_color_value','#000000' ).";}";
+  $body.="#cssmenu > ul > li:hover > a, #cssmenu > ul > li.active > a{color:".get_theme_mod( 'yymnk_hover_color_value','#000000' ).";}";
+  $body.="#cssmenu > ul.sub-menu >li:hover > a::after{border-color:".get_theme_mod( 'yymnk_hover_color_value','#000000' ).";}";
   $body.="body{color:".get_theme_mod( 'yymnk_text_color_value','#000000' ).";";
   switch(get_theme_mod( 'yymnk_font_value','serif' )){
     case 'serif':
