@@ -1,7 +1,11 @@
 <?php
 function yymnk_robot(){
+  require_once(ABSPATH . 'wp-admin/includes/file.php');
   $txt="User-agent: *\nDisallow: /wp-admin/\nAllow: /wp-admin/admin-ajax.php\nSitemap: ".home_url()."/sitemap-index.xml";
-  file_put_contents(get_home_path()."/robot.txt", $txt);
+  if(WP_Filesystem(get_home_path()."/robot.txt")){
+    global $wp_filesystem;
+    $wp_filesystem->put_contents(get_home_path()."/robot.txt",$txt);
+  }
   return;
 }
 function yymnk_sitemap($post_ID){

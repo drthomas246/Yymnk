@@ -367,7 +367,7 @@ yymnk_view_changer();
                     <td>
                      <input type="file" name="upfile"/><br/>
                      (css jpg png gifのみアップロードできます。ファイル名に日本語を入れないでください。うまくアップロードできません。)<br/>
-                     テーマのスタイルシートレイアウトは<a href="<?php echo bloginfo( 'template_url' );?>/style.pdf">こちら</a>（pdfファイル）<br/>
+                     テーマのスタイルシートレイアウトは<a href="<?php echo esc_url( get_template_directory_uri() )?>/style.pdf">こちら</a>（pdfファイル）<br/>
                      アップロードされた画像ファイルを参照する場合は <span style="color: #ff0000;">%url%画像ファイル名</span> としてください。%url%がアップロードフォルダーのＵＲＬに変換されます
                   </tr>
                   </tbody>
@@ -857,7 +857,7 @@ echo " disabled";
                   <tr>
                     <th><label for="sidebar">バージョン</label></th>
                     <td>
-                      3.3.2
+                      3.3.3
                     </td>
                   </tr>
                   <tr>

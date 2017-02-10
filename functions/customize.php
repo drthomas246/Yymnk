@@ -87,25 +87,44 @@ function yymnk_customizer_live_preview()
 add_action( 'customize_preview_init', 'yymnk_customizer_live_preview' );
 
 function yymnk_css_modes() {
+  require_once(ABSPATH . 'wp-admin/includes/file.php');
   $body='<style type="text/css">';
   switch (get_theme_mod('sidebar','none')){
   case "none";
-    $body.= file_get_contents(get_stylesheet_directory() . '/css/none.css');
+    if (WP_Filesystem(get_stylesheet_directory() . '/css/none.css')){
+      global $wp_filesystem;
+      $body.= $wp_filesystem->get_contents(get_stylesheet_directory() . '/css/none.css');
+    }
     break;
   case "right";
-    $body.= file_get_contents(get_stylesheet_directory() . '/css/right.css');
+    if (WP_Filesystem(get_stylesheet_directory() . '/css/right.css')){
+      global $wp_filesystem;
+      $body.= $wp_filesystem->get_contents(get_stylesheet_directory() . '/css/right.css');
+    }
     break;
   case "left";
-    $body.= file_get_contents(get_stylesheet_directory() . '/css/left.css');
+    if (WP_Filesystem(get_stylesheet_directory() . '/css/left.css')){
+      global $wp_filesystem;
+      $body.= $wp_filesystem->get_contents(get_stylesheet_directory() . '/css/left.css');
+    }
     break;
   case "left-right";
-    $body.= file_get_contents(get_stylesheet_directory() . '/css/left-right.css');
+    if (WP_Filesystem(get_stylesheet_directory() . '/css/left-right.css')){
+      global $wp_filesystem;
+      $body.= $wp_filesystem->get_contents(get_stylesheet_directory() . '/css/left-right.css');
+    }
     break;
   case "left-left";
-    $body.= file_get_contents(get_stylesheet_directory() . '/css/left-left.css');
+    if (WP_Filesystem(get_stylesheet_directory() . '/css/left-left.css')){
+      global $wp_filesystem;
+      $body.= $wp_filesystem->get_contents(get_stylesheet_directory() . '/css/left-left.css');
+    }
     break;
   case "right-right";
-    $body.= file_get_contents(get_stylesheet_directory() . '/css/right-right.css');
+    if (WP_Filesystem(get_stylesheet_directory() . '/css/right-right.css')){
+      global $wp_filesystem;
+      $body.= $wp_filesystem->get_contents(get_stylesheet_directory() . '/css/right-right.css');
+    }
     break;
   }
   $body.="#menu-line{background-color:".get_theme_mod( 'yymnk_hover_color_value','#000000' ).";}";
@@ -125,7 +144,10 @@ function yymnk_css_modes() {
   }
   $body.="}a{color:".get_theme_mod( 'yymnk_text_color_value','#000000' ).";}a:hover{color:".get_theme_mod( 'yymnk_hover_color_value','#000000' ).";}";
   if(get_theme_mod('view_chacker','-')!="-"){
-    $buf=file_get_contents(get_stylesheet_directory() . '/css/display/'.get_theme_mod('view_chacker','-'));
+    if (WP_Filesystem(get_stylesheet_directory() . '/css/display/'.get_theme_mod('view_chacker','-'))){
+      global $wp_filesystem;
+      $body= $wp_filesystem->get_contents(get_stylesheet_directory() . '/css/display/'.get_theme_mod('view_chacker','-'));
+    }
     $body.=str_replace("%url%", get_stylesheet_directory_uri() . '/css/display/', $buf);
   }
   $body.="</style>\n";

@@ -163,7 +163,7 @@ function yymnk_get_attachment_link( $id = 0, $size = 'thumbnail', $permalink = f
   $_post = get_post( $id );
 
   if ( empty( $_post ) || ( 'attachment' !== $_post->post_type ) || ! $url = wp_get_attachment_url( $_post->ID ) ) {
-    return __( 'Missing Attachment' );
+    return '添付ファイルがありません';
   }
 
   if ( $permalink ) {

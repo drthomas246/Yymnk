@@ -64,7 +64,7 @@ if(get_theme_mod('sidebar','none')=="right-right"){
           if ( $categories ) {
           foreach( $categories as $category ) {
             $output .= '<a href="' . get_category_link( $category->term_id ) . '" title="' 
-              . esc_attr( sprintf( __( "View all posts in %s" ), $category->name ) ) 
+              . esc_attr( sprintf( "「%s」の記事をすべて表示", $category->name ) ) 
               . '">' . $category->cat_name . '</a>' . $separator;
             }
             $output=trim( $output, $separator );

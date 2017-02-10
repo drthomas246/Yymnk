@@ -49,21 +49,21 @@ function yymnk_check_push_success(){
     switch(get_transient( 'yymnk_errors' )){
       case 'success':
         ?><div id="message" class="notice notice-success is-dismissible"><p>PubSubHubbubの送信に成功しました。</p></div><?php
-        set_transient( 'yymnk_errors','');
+        set_transient( 'yymnk_errors','',1);
       break;
       case 'error':
         ?><div id="message" class="error is-dismissible"><p>PubSubHubbubの送信に失敗しました。</p></div><?php
-        set_transient( 'yymnk_errors','');
+        set_transient( 'yymnk_errors','',1);
       break;
     }
     switch(get_transient( 'yymnk_sitemap_errors' )){
       case 'success':
         ?><div id="message" class="notice notice-success is-dismissible"><p>sitemapの送信に成功しました。</p></div><?php
-        set_transient( 'yymnk_sitemap_errors','');
+        set_transient( 'yymnk_sitemap_errors','',1);
       break;
       case 'error':
         ?><div id="message" class="error is-dismissible"><p>sitemapの送信に失敗しました。</p></div><?php
-        set_transient( 'yymnk_sitemap_errors','');
+        set_transient( 'yymnk_sitemap_errors','',1);
       break;
     }
   }
