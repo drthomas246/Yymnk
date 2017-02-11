@@ -70,14 +70,14 @@ function yymnk_sitemap($post_ID){
     yymnk_robot();
     $URLSitemap =home_url().'/sitemap-index.xml';
     $url = "http://www.google.com/webmasters/sitemaps/ping?sitemap=".$URLSitemap;
-    $google_codigoRetorno = yymnk_enviarSitemapA ( $url );
+    $google_codigoRetorno = wp_safe_remote_post( $url );
     $url = "http://www.bing.com/webmaster/ping.aspx?siteMap=".$URLSitemap;
-    $bing_codigoRetorno = yymnk_enviarSitemapA ($url);
-    if (intval($google_codigoRetorno)==200 and intval($bing_codigoRetorno)==200){
+    $bing_codigoRetorno = wp_safe_remote_post($url);
+    if (intval($google_codigoRetorno['response']['code'])==200 and intval($bing_codigoRetorno['response']['code'])==200){
       set_transient( 'yymnk_sitemap_errors','success');
-    }elseif(intval($google_codigoRetorno)!=200){
+    }elseif(intval($google_codigoRetorno['response']['code'])!=200){
       set_transient( 'yymnk_sitemap_errors','error');
-    }elseif(intval($bing_codigoRetorno)!=200){
+    }elseif(intval($bing_codigoRetorno['response']['code'])!=200){
       set_transient( 'yymnk_sitemap_errors','error');
     }
     
@@ -87,16 +87,3 @@ function yymnk_sitemap($post_ID){
 }
 add_action( 'publish_post', 'yymnk_sitemap');
 add_action( 'publish_page', 'yymnk_sitemap');
-
-function yymnk_enviarSitemapA ( $url ){
-   $ch = curl_init ( $url );
- 
-   curl_setopt( $ch, CURLOPT_HEADER, 0 );
-   ob_start();
-   curl_exec( $ch );
-   $httpCode = ob_get_clean();
-   $httpCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-   curl_close( $ch );
- 
-   return $httpCode;
-}
